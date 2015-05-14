@@ -82,3 +82,45 @@ D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.xml
 D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.csprojResolveAssemblyReference.cache
 D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.dll
 D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.pdb
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\NLog.config
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\HomeMarket.dll.config
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\HomeMarket.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\HomeMarket.pdb
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Antlr3.Runtime.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\AspNet.ScriptManager.jQuery.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.Core.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\EntityFramework.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\EntityFramework.SqlServer.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.ScriptManager.MSAjax.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.ScriptManager.WebForms.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Newtonsoft.Json.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\NLog.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\System.Web.Optimization.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\System.Web.Providers.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\WebGrease.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\EntityFramework.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\EntityFramework.SqlServer.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Newtonsoft.Json.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\NLog.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\System.Web.Providers.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.Core.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.xml
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\obj\Debug\HomeMarket.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\obj\Debug\HomeMarket.dll
+C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\obj\Debug\HomeMarket.pdb
