@@ -54,7 +54,6 @@ D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.dll
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.dll
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 D:\git\homemarket\HomeMarket\bin\EntityFramework.dll
-D:\git\homemarket\HomeMarket\bin\EntityFramework.SqlServer.dll
 D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.dll
 D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.dll
 D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
@@ -69,7 +68,6 @@ D:\git\homemarket\HomeMarket\bin\WebGrease.dll
 D:\git\homemarket\HomeMarket\bin\Newtonsoft.Json.xml
 D:\git\homemarket\HomeMarket\bin\NLog.xml
 D:\git\homemarket\HomeMarket\bin\EntityFramework.xml
-D:\git\homemarket\HomeMarket\bin\EntityFramework.SqlServer.xml
 D:\git\homemarket\HomeMarket\bin\System.Web.Providers.xml
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.Core.xml
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.xml
@@ -79,7 +77,6 @@ D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.AspNet.xml
 D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.xml
-D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.csprojResolveAssemblyReference.cache
 D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.dll
 D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.pdb
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\NLog.config

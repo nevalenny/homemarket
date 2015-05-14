@@ -18,8 +18,8 @@ GO
 
 CREATE TABLE homemarket.dbo.categories (
   ID INT IDENTITY,
-  Name VARCHAR(100) NOT NULL,
-  Description VARCHAR(1000) NULL,
+  Name VARCHAR(MAX) NOT NULL,
+  Description VARCHAR(MAX) NULL,
   Picture VARCHAR(MAX) NULL,
   Goods VARCHAR(MAX) NULL,
   isVisible BIT NOT NULL DEFAULT 1,
@@ -29,8 +29,8 @@ GO
 
 CREATE TABLE homemarket.dbo.goods (
   ID INT IDENTITY,
-  Name VARCHAR(255) NOT NULL,
-  Description VARCHAR(1000) NULL,
+  Name VARCHAR(MAX) NOT NULL,
+  Description VARCHAR(MAX) NULL,
   Price DECIMAL(16, 2) NULL DEFAULT (0),
   Picture VARCHAR(MAX) NULL,
   Available INT NULL,
