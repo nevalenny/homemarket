@@ -10,7 +10,9 @@ namespace HomeMarket.Models
         public MarketContext()
             : base("name=MarketContext")
         {
+
         }
+
 
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<good> goods { get; set; }

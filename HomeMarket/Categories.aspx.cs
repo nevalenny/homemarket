@@ -9,8 +9,7 @@ namespace HomeMarket
 {
     public partial class Categories : System.Web.UI.Page
     {
-
-        private HomeMarket.Models.Repository.Repository repository = new HomeMarket.Models.Repository.Repository();
+        private HomeMarket.Models.Repository repository = new HomeMarket.Models.Repository();
 
         protected IEnumerable<HomeMarket.Models.category> GetCategories()
         {

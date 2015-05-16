@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace HomeMarket.Models.Repository
+namespace HomeMarket.Models
 {
     public class Repository
     {

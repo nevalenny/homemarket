@@ -12,9 +12,9 @@
                         <div class='item'>
                             <h3>{0}</h3>
                             {1}
-                            <h4>{2:c}</h4>
+                            <img src='data:image/png;base64,{2}'/>
                         </div>", 
-                        category.Name, category.Description));
+                        category.Name, category.Description, category.Picture));
                 }
             %>
         </div>
