@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Microsoft.AspNet.Membership.OpenAuth;
 
 namespace HomeMarket.Account

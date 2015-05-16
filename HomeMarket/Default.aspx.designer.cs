@@ -7,11 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HomeMarket
-{
-
-
-    public partial class _Default
-    {
+namespace HomeMarket {
+    
+    
+    public partial class Default {
     }
 }
