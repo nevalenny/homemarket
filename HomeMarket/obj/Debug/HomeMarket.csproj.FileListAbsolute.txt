@@ -46,7 +46,6 @@ D:\git\homemarket\HomeMarket\bin\HomeMarket.dll
 D:\git\homemarket\HomeMarket\bin\HomeMarket.pdb
 D:\git\homemarket\HomeMarket\bin\Antlr3.Runtime.dll
 D:\git\homemarket\HomeMarket\bin\AspNet.ScriptManager.jQuery.dll
-D:\git\homemarket\HomeMarket\bin\AspNet.ScriptManager.jQuery.UI.Combined.dll
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.AspNet.dll
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.Core.dll
 D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.Consumer.dll

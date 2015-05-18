@@ -20,5 +20,11 @@ namespace HomeMarket
         {
 
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+          ScriptManager.RegisterClientScriptBlock(this, this.GetType(),"none", "<script>$('#mymodal').modal('show');</script>", false);
+        }
+
     }
 }
