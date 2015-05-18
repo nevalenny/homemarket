@@ -23,7 +23,7 @@ namespace HomeMarket.Account
             string continueUrl = RegisterUser.ContinueDestinationPageUrl;
             if (!OpenAuth.IsLocalUrl(continueUrl))
             {
-                continueUrl = "~/";
+                continueUrl = "~/Categories";
             }
             Response.Redirect(continueUrl);
         }

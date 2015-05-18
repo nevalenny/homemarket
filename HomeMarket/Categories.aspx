@@ -7,31 +7,46 @@
                 foreach (HomeMarket.Models.category category in GetCategories())
                 {
                     Response.Write(String.Format(@"
-                        <div class='item'>
-                            <h3>{0}</h3>
-                            {1}
-                            <img src='data:image/png;base64,{2}'/>
-                        </div>", 
-                        category.Name, category.Description, category.Picture));
+                        <div class='row'>
+                          <div class='col-sm-2 col-md-2'>
+                            <div class='thumbnail'>
+                              <img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
+                              <div class='caption'>
+                                <h3>{0}</h3>
+                                <p>{1}</p>
+                                <p><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editCategoryModal' data-id='{3}'>Edit Category</button></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>",
+                        category.Name, category.Description, category.Picture, category.ID));
                 }
             %>
         </div>
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-        Launch demo modal
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Edit Category Modal -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="editCategoryModalLabel">Edit Category</h4>
           </div>
           <div class="modal-body">
-            ...
+            <div class='thumbnail'>
+                <%
+                    foreach (HomeMarket.Models.category category in GetCategories())
+                    {
+                        //TODO - implement loading appropriate category data
+                        if(category.ID==1) Response.Write(String.Format(@"<img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
+                              <div class='caption'>
+                                <h3>{0}</h3>
+                                <p>{1}</p>
+                              </div>
+                            </div>",
+                        category.Name, category.Description, category.Picture, category.ID));
+                    }  
+                    %>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -40,4 +55,6 @@
         </div>
       </div>
     </div>
+    </div>
+
 </asp:Content>
