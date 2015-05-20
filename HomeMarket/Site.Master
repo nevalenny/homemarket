@@ -5,8 +5,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title><%: Page.Title %> - HomeMarket</title>
-    <link href="/Content/site.css" rel="stylesheet">
-    <link href="/Content/bootstrap.css" rel="stylesheet">
+          <%: Styles.Render("~/Content/css") %>
     <asp:PlaceHolder runat="server">     
           <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>  
@@ -16,9 +15,7 @@
 </head>
 <body>
    <form runat="server">
- 
-
-   <header>
+    <header>
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
@@ -38,20 +35,18 @@
                             <p>
                                 Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
                                     <asp:LoginName runat="server" CssClass="username" /></a>!
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>                                
                                 <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
                             </p>
                         </LoggedInTemplate>
                     </asp:LoginView>
                 </section>
-                <nav>
-                    <ul id="menu">
-                        <li><a runat="server" href="~/Categories">Categories</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
-    </header>
-            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+        </header>
+
+    
+    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
 
     <footer>
         <div class="content-wrapper">

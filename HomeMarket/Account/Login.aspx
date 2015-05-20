@@ -2,9 +2,6 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <hgroup class="title">
-        <h1><%: Title %>.</h1>
-    </hgroup>
     <section id="loginForm">
         <h2>Use a local account to log in.</h2>
         <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false">
