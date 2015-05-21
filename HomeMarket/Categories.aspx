@@ -22,7 +22,7 @@
                               <div class='caption'>
                                 <h3>{0}</h3>
                                 <p>{1}</p>
-                                <p><button type='button' class='btn btn-primary btn-lg' data-toggle='modal' data-target='#editCategoryModal' data-id='{3}'>Edit Category</button></p>
+                                <p><button type='button' class='btn btn-default' data-toggle='modal' data-target='#editCategoryModal' data-id='{3}'>Edit Category</button></p>
                               </div>
                             </div>
                           </div>
