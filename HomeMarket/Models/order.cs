@@ -6,13 +6,13 @@ namespace HomeMarket.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class order
+    public partial class Order
     {
         public int ID { get; set; }
 
         public DateTime? Date { get; set; }
 
-        public int? UserID { get; set; }
+        public Guid? UserID { get; set; }
 
         public int? GoodID { get; set; }
 
@@ -22,6 +22,6 @@ namespace HomeMarket.Models
 
         public virtual good good { get; set; }
 
-        public virtual user user { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -32,7 +32,7 @@
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     <p class="navbar-text navbar-right">
-                                        Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                        Hello, <%# Context.User.Identity.Name %><a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
                                             <asp:LoginName runat="server" CssClass="username" />
                                         </a>!
                                     <button type='button' class='btn btn-warning btn-xs' data-toggle='modal' data-target='#showCart'>Your cart <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>

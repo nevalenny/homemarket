@@ -10,7 +10,7 @@ namespace HomeMarket.Models
     {
         public good()
         {
-            orders = new HashSet<order>();
+            Orders = new HashSet<Order>();
         }
 
         public int ID { get; set; }
@@ -32,6 +32,6 @@ namespace HomeMarket.Models
 
         public virtual category category { get; set; }
 
-        public virtual ICollection<order> orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

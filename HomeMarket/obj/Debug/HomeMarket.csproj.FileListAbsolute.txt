@@ -40,44 +40,6 @@ C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\HomeMarket\b
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\HomeMarket\bin\NLog.dll
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\HomeMarket\bin\Newtonsoft.Json.xml
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\HomeMarket\bin\NLog.xml
-D:\git\homemarket\HomeMarket\bin\NLog.config
-D:\git\homemarket\HomeMarket\bin\HomeMarket.dll.config
-D:\git\homemarket\HomeMarket\bin\HomeMarket.dll
-D:\git\homemarket\HomeMarket\bin\HomeMarket.pdb
-D:\git\homemarket\HomeMarket\bin\Antlr3.Runtime.dll
-D:\git\homemarket\HomeMarket\bin\AspNet.ScriptManager.jQuery.dll
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.AspNet.dll
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.Core.dll
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.Consumer.dll
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.dll
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.dll
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
-D:\git\homemarket\HomeMarket\bin\EntityFramework.dll
-D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.dll
-D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.dll
-D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
-D:\git\homemarket\HomeMarket\bin\Microsoft.ScriptManager.MSAjax.dll
-D:\git\homemarket\HomeMarket\bin\Microsoft.ScriptManager.WebForms.dll
-D:\git\homemarket\HomeMarket\bin\Microsoft.Web.Infrastructure.dll
-D:\git\homemarket\HomeMarket\bin\Newtonsoft.Json.dll
-D:\git\homemarket\HomeMarket\bin\NLog.dll
-D:\git\homemarket\HomeMarket\bin\System.Web.Optimization.dll
-D:\git\homemarket\HomeMarket\bin\System.Web.Providers.dll
-D:\git\homemarket\HomeMarket\bin\WebGrease.dll
-D:\git\homemarket\HomeMarket\bin\Newtonsoft.Json.xml
-D:\git\homemarket\HomeMarket\bin\NLog.xml
-D:\git\homemarket\HomeMarket\bin\EntityFramework.xml
-D:\git\homemarket\HomeMarket\bin\System.Web.Providers.xml
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.Core.xml
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.xml
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.Consumer.xml
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.xml
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
-D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.AspNet.xml
-D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.xml
-D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.xml
-D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.dll
-D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.pdb
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\NLog.config
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\HomeMarket.dll.config
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\HomeMarket.dll
@@ -120,6 +82,44 @@ C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\bin\Microsof
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\obj\Debug\HomeMarket.csprojResolveAssemblyReference.cache
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\obj\Debug\HomeMarket.dll
 C:\Users\Admin\Dropbox\Projects\Visual Studio\HomeMarket\HomeMarket\obj\Debug\HomeMarket.pdb
-D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.csprojResolveAssemblyReference.cache
+D:\git\homemarket\HomeMarket\bin\NLog.config
+D:\git\homemarket\HomeMarket\bin\HomeMarket.dll.config
+D:\git\homemarket\HomeMarket\bin\HomeMarket.dll
+D:\git\homemarket\HomeMarket\bin\HomeMarket.pdb
+D:\git\homemarket\HomeMarket\bin\Antlr3.Runtime.dll
+D:\git\homemarket\HomeMarket\bin\AspNet.ScriptManager.jQuery.dll
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.AspNet.dll
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.Core.dll
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.dll
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.dll
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\git\homemarket\HomeMarket\bin\EntityFramework.dll
 D:\git\homemarket\HomeMarket\bin\EntityFramework.SqlServer.dll
+D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.dll
+D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.dll
+D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll
+D:\git\homemarket\HomeMarket\bin\Microsoft.ScriptManager.MSAjax.dll
+D:\git\homemarket\HomeMarket\bin\Microsoft.ScriptManager.WebForms.dll
+D:\git\homemarket\HomeMarket\bin\Microsoft.Web.Infrastructure.dll
+D:\git\homemarket\HomeMarket\bin\Newtonsoft.Json.dll
+D:\git\homemarket\HomeMarket\bin\NLog.dll
+D:\git\homemarket\HomeMarket\bin\System.Web.Optimization.dll
+D:\git\homemarket\HomeMarket\bin\System.Web.Providers.dll
+D:\git\homemarket\HomeMarket\bin\WebGrease.dll
+D:\git\homemarket\HomeMarket\bin\EntityFramework.xml
 D:\git\homemarket\HomeMarket\bin\EntityFramework.SqlServer.xml
+D:\git\homemarket\HomeMarket\bin\Newtonsoft.Json.xml
+D:\git\homemarket\HomeMarket\bin\NLog.xml
+D:\git\homemarket\HomeMarket\bin\System.Web.Providers.xml
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.Core.xml
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.xml
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.xml
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\git\homemarket\HomeMarket\bin\DotNetOpenAuth.AspNet.xml
+D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.xml
+D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.xml
+D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.dll
+D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.pdb
+D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.csprojResolveAssemblyReference.cache

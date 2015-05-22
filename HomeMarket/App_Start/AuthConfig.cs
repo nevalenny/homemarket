@@ -17,9 +17,9 @@ namespace HomeMarket
             //    consumerKey: "your Twitter consumer key",
             //    consumerSecret: "your Twitter consumer secret");
 
-            OpenAuth.AuthenticationClients.AddFacebook(
-                appId: "your Facebook app id",
-                appSecret: "your Facebook app secret");
+            //OpenAuth.AuthenticationClients.AddFacebook(
+            //    appId: "your Facebook app id",
+            //    appSecret: "your Facebook app secret");
 
             //OpenAuth.AuthenticationClients.AddMicrosoft(
             //    clientId: "your Microsoft account client id",

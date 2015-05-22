@@ -276,12 +276,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Application.cs" />
     <Compile Include="Models\category.cs" />
     <Compile Include="Models\good.cs" />
     <Compile Include="Models\MarketContext.cs" />
+    <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\order.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\user.cs" />
+    <Compile Include="Models\UsersOpenAuthAccount.cs" />
+    <Compile Include="Models\UsersOpenAuthData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

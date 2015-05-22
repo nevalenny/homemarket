@@ -1,9 +1,5 @@
 ﻿<%@ Page Title="Categories" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Categories.aspx.cs" Inherits="HomeMarket.Categories" %>
 
-<%
-    var HomeMarket.Models.category categories = GetCategories();
-
-%>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
@@ -14,28 +10,34 @@
     </ol>
 
     <div class="container-fluid">
-        <asp:Repeater ID="categories" runat="server">
+        <asp:Repeater runat="server" ID="rptCategories">
             <HeaderTemplate>
                 <div class='row'>
             </HeaderTemplate>
             <ItemTemplate>
-                <div class='col-xs-12 col-sm-6 col-md-3 col-lg-3'>
+                <div class='col-xs-6 col-sm-4 col-md-3 col-lg-3'>
                     <div class='thumbnail'>
-                        <a href='/Categories/<%#Container.DataItem("ID")%>'>
-                            <img src='data:image/png;base64,<%#Container.DataItem("Picture")%>' style='border: 1px solid #E6E6E6' /></a>
+                        <a href='/Categories/<%# Eval("ID") %>'>
+                            <img src='data:image/png;base64,<%# Eval("Picture") %>' style='border: 1px solid #E6E6E6' />
+                        </a>
                         <div class='caption'>
-                            <a href='/Categories/<%#Container.DataItem("ID")%>'>
-                                <h3><%#Container.DataItem("Name")%></h3>
+                            <a href='/Categories/<%# Eval("ID") %>'>
+                                <h3><%# Eval("Name")%></h3>
                             </a>
-                            <a href='/Categories/<%#Container.DataItem("ID")%>'>
-                                <p><%#Container.DataItem("Description")%></p>
+                            <a href='/Categories/<%# Eval("ID") %>'>
+                                <p><%# Eval("Description") %></p>
                             </a>
-                            <rolegroups>
-                                <asp:RoleGroup Roles='admin'>
-                                    <p>
-                                        <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Container.DataItem("ID")%>'>Edit Category</button></p>
-                                </asp:RoleGroup>
-                                </rolegroups>
+                            <asp:LoginView id="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+                                <RoleGroups>
+                                    <asp:RoleGroup Roles='admins'>
+                                        <ContentTemplate>
+                                            <p>
+                                                <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Eval("ID")%>'>Edit Category</button>
+                                            </p>
+                                        </ContentTemplate>
+                                    </asp:RoleGroup>
+                                </RoleGroups>
+                            </asp:LoginView>
                         </div>
                     </div>
                 </div>
@@ -44,27 +46,6 @@
                 </div>  <%--row--%>
             </FooterTemplate>
         </asp:Repeater>
-        <div class='row'>
-            <%
-                            //                foreach (HomeMarket.Models.category category in GetCategories())
-                            //                {
-                            //                    Response.Write(String.Format(@"
-                            //                          <div class='col-xs-12 col-sm-6 col-md-3 col-lg-3'>
-                            //                            <div class='thumbnail'>
-                            //                              <a href='/Categories/{3}'><img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6' /></a>
-                            //                              <div class='caption'>
-                            //                                <a href='/Categories/{3}'><h3>{0}</h3></a>
-                            //                                <a href='/Categories/{3}'><p>{1}</p></a>
-                            //                                <asp:RoleGroup Roles='admin'>
-                            //                                    <p><button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='{3}'>Edit Category</button></p>
-                            //                                </asp:RoleGroup>
-                            //                              </div>
-                            //                            </div>
-                            //                        </div>",
-                            //                        category.Name, category.Description, category.Picture, category.ID));
-                            //                }
-            %>
-        </div>
     </div>
 
     <!-- Edit Category Modal -->
@@ -78,17 +59,14 @@
                 <div class="modal-body">
                     <div class='thumbnail'>
                         <%
-                            foreach (HomeMarket.Models.category category in GetCategories())
-                            {
-                                //TODO - implement loading appropriate category data
-                                if (category.ID == 1) Response.Write(String.Format(@"<img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
+                            var category=GetCategorieById(5);
+                              Response.Write(String.Format(@"<img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
                               <div class='caption'>
                                 <h3>{0}</h3>
                                 <p>{1}</p>
                               </div>
                             </div>",
                                    category.Name, category.Description, category.Picture, category.ID));
-                            }  
                         %>
                     </div>
                     <div class="modal-footer">

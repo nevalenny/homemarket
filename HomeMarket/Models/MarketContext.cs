@@ -10,14 +10,18 @@ namespace HomeMarket.Models
         public MarketContext()
             : base("name=MarketContext")
         {
-
         }
 
-
+        public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<good> goods { get; set; }
-        public virtual DbSet<order> orders { get; set; }
-        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<Membership> Memberships { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UsersOpenAuthAccount> UsersOpenAuthAccounts { get; set; }
+        public virtual DbSet<UsersOpenAuthData> UsersOpenAuthDatas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -58,29 +62,26 @@ namespace HomeMarket.Models
                 .Property(e => e.Picture)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<order>()
+            modelBuilder.Entity<Order>()
                 .Property(e => e.Price)
                 .HasPrecision(16, 2);
 
-            modelBuilder.Entity<user>()
-                .Property(e => e.Name)
+            modelBuilder.Entity<User>()
+                .Property(e => e.UserName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<user>()
-                .Property(e => e.E_mail)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<user>()
-                .Property(e => e.PasswordHash)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<user>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.WalletBalance)
                 .HasPrecision(16, 2);
 
-            modelBuilder.Entity<user>()
+            modelBuilder.Entity<User>()
                 .Property(e => e.AvatarPicture)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<UsersOpenAuthData>()
+                .HasMany(e => e.UsersOpenAuthAccounts)
+                .WithRequired(e => e.UsersOpenAuthData)
+                .HasForeignKey(e => new { e.ApplicationName, e.MembershipUserName });
         }
     }
 }

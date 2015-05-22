@@ -6,44 +6,29 @@ namespace HomeMarket.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class user
+    public partial class User
     {
-        public user()
+        public User()
         {
-            orders = new HashSet<order>();
+            Orders = new HashSet<Order>();
         }
 
-        public int ID { get; set; }
+        public Guid UserID { get; set; }
 
-        public Guid Guid { get; set; }
+        [StringLength(50)]
+        public string UserName { get; set; }
 
-        public bool isAdmin { get; set; }
+        public Guid? ApplicationID { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public bool? IsAnonymous { get; set; }
 
-        [Column("E-mail")]
-        [Required]
-        public string E_mail { get; set; }
-
-        public bool isEmailConfirmed { get; set; }
-
-        [Required]
-        public string PasswordHash { get; set; }
-
-        public DateTime CreatedOn { get; set; }
-
-        public DateTime ChangedOn { get; set; }
-
-        public DateTime? DeletedOn { get; set; }
-
-        public DateTime? LastLoginOn { get; set; }
+        public DateTime? LastActivityDate { get; set; }
 
         public decimal WalletBalance { get; set; }
 
         [Required]
         public string AvatarPicture { get; set; }
 
-        public virtual ICollection<order> orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
