@@ -278,7 +278,7 @@
     </Compile>
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\category.cs" />
-    <Compile Include="Models\good.cs" />
+    <Compile Include="Models\Good.cs" />
     <Compile Include="Models\MarketContext.cs" />
     <Compile Include="Models\Membership.cs" />
     <Compile Include="Models\order.cs" />

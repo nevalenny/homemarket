@@ -10,7 +10,7 @@ namespace HomeMarket.Models
     {
         public category()
         {
-            goods1 = new HashSet<good>();
+            goods1 = new HashSet<Good>();
         }
 
         public int ID { get; set; }
@@ -26,6 +26,8 @@ namespace HomeMarket.Models
 
         public bool isVisible { get; set; }
 
-        public virtual ICollection<good> goods1 { get; set; }
+        public bool isDeleted { get; set; }
+
+        public virtual ICollection<Good> goods1 { get; set; }
     }
 }

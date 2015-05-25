@@ -8,7 +8,7 @@ namespace HomeMarket.Models
 
     public partial class Order
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         public DateTime? Date { get; set; }
 
@@ -20,7 +20,7 @@ namespace HomeMarket.Models
 
         public decimal Price { get; set; }
 
-        public virtual good good { get; set; }
+        public virtual Good good { get; set; }
 
         public virtual User User { get; set; }
     }

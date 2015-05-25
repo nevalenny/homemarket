@@ -1,6 +1,6 @@
 CREATE TABLE homemarket.dbo.Users (
   UserID UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID()),
-  UserName VARCHAR(50) NULL,
+  UserName VARCHAR(MAX) NULL,
   ApplicationID UNIQUEIDENTIFIER NULL,
   IsAnonymous BIT NULL,
   LastActivityDate DATETIME NULL,
@@ -16,7 +16,8 @@ CREATE TABLE homemarket.dbo.Categories (
   Description VARCHAR(MAX) NULL,
   Picture VARCHAR(MAX) NULL,
   Goods VARCHAR(MAX) NULL,
-  isVisible BIT NOT NULL DEFAULT 1,
+  isVisible BIT NOT NULL DEFAULT (1),
+  isDeleted BIT NOT NULL DEFAULT (0),
   CONSTRAINT PK_Categories PRIMARY KEY CLUSTERED (ID)
 ) 
 GO
@@ -29,6 +30,7 @@ CREATE TABLE homemarket.dbo.Goods (
   Picture VARCHAR(MAX) NULL,
   Available INT NULL,
   isVisible BIT NOT NULL DEFAULT (1),
+  isDeleted BIT NOT NULL DEFAULT (0),
   CategoryID INT NOT NULL,
   CONSTRAINT PK_Goods PRIMARY KEY CLUSTERED (ID),
   CONSTRAINT FK_Goods_Categories_ID FOREIGN KEY (CategoryID) REFERENCES dbo.Categories (ID)
@@ -36,7 +38,7 @@ CREATE TABLE homemarket.dbo.Goods (
 GO
 
 CREATE TABLE homemarket.dbo.Orders (
-  ID INT IDENTITY,
+  ID UNIQUEIDENTIFIER NOT NULL DEFAULT (NEWID()),
   Date DATETIME NULL,
   UserID UNIQUEIDENTIFIER NULL,
   GoodID INT NULL,

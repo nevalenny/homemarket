@@ -13,7 +13,7 @@ namespace HomeMarket.Models
         {
             get { return context.categories; }
         }
-        public IEnumerable<good> Goods
+        public IEnumerable<Good> Goods
         {
             get { return context.goods; }
         }

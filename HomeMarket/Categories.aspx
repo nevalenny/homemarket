@@ -27,13 +27,18 @@
                             <a href='/Categories/<%# Eval("ID") %>'>
                                 <p><%# Eval("Description") %></p>
                             </a>
-                            <asp:LoginView id="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+                            <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
                                 <RoleGroups>
                                     <asp:RoleGroup Roles='admins'>
                                         <ContentTemplate>
                                             <p>
-                                                <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Eval("ID")%>'>Edit Category</button>
+                                                <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Eval("ID")%>'>Edit</button>
+                                                <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#deleteCategoryModal' data-id='<%#Eval("ID")%>'>Delete</button>
                                             </p>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>> Visible? </label>
+                                            </div>
                                         </ContentTemplate>
                                     </asp:RoleGroup>
                                 </RoleGroups>
@@ -48,34 +53,75 @@
         </asp:Repeater>
     </div>
 
-    <!-- Edit Category Modal -->
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="editCategoryModalLabel">Edit Category</h4>
-                </div>
-                <div class="modal-body">
-                    <div class='thumbnail'>
-                        <%
-                            var category=GetCategorieById(5);
-                              Response.Write(String.Format(@"<img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
+    <%--Admin modals--%>
+
+    <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+        <RoleGroups>
+            <asp:RoleGroup Roles='admins'>
+                <ContentTemplate>
+
+
+                    <!-- Edit Category Modal -->
+                    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="editCategoryModalLabel">Edit Category</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class='thumbnail'>
+                                        <%
+                                            var category = GetCategorieById(5);
+                                            Response.Write(String.Format(@"<img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
                               <div class='caption'>
                                 <h3>{0}</h3>
                                 <p>{1}</p>
                               </div>
                             </div>",
-                                   category.Name, category.Description, category.Picture, category.ID));
-                        %>
+                                                 category.Name, category.Description, category.Picture, category.ID));
+                                        %>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+                    <!-- Delete Category Modal -->
+                    <div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="deleteCategoryModalLabel">Delete Category?</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class='thumbnail'>
+                                        <%
+                                            category = GetCategorieById(5);
+                                            Response.Write(String.Format(@"<img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
+                              <div class='caption'>
+                                <h3>{0}</h3>
+                                <p>{1}</p>
+                              </div>
+                            </div>",
+                                                 category.Name, category.Description, category.Picture, category.ID));
+                                        %>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:RoleGroup>
+        </RoleGroups>
+    </asp:LoginView>
 </asp:Content>

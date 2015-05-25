@@ -14,7 +14,7 @@ namespace HomeMarket.Models
 
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<category> categories { get; set; }
-        public virtual DbSet<good> goods { get; set; }
+        public virtual DbSet<Good> goods { get; set; }
         public virtual DbSet<Membership> Memberships { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
@@ -46,19 +46,19 @@ namespace HomeMarket.Models
                 .WithRequired(e => e.category)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<good>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.Name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<good>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.Description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<good>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.Price)
                 .HasPrecision(16, 2);
 
-            modelBuilder.Entity<good>()
+            modelBuilder.Entity<Good>()
                 .Property(e => e.Picture)
                 .IsUnicode(false);
 

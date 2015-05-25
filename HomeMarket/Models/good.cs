@@ -6,9 +6,9 @@ namespace HomeMarket.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class good
+    public partial class Good
     {
-        public good()
+        public Good()
         {
             Orders = new HashSet<Order>();
         }
@@ -27,6 +27,8 @@ namespace HomeMarket.Models
         public int? Available { get; set; }
 
         public bool isVisible { get; set; }
+        
+        public bool isDeleted { get; set; }
 
         public int CategoryID { get; set; }
 
