@@ -10,6 +10,8 @@ namespace HomeMarket
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.MapPageRoute("", "Goods/{CategoryID}", "~/Goods.aspx", true, new RouteValueDictionary { { "CategoryID", @"\d{1,8}" } });
+
             routes.EnableFriendlyUrls();
         }
     }

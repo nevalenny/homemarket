@@ -148,6 +148,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Goods.aspx" />
     <Content Include="Icon.png" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -275,6 +276,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Goods.aspx.cs">
+      <DependentUpon>Goods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Goods.aspx.designer.cs">
+      <DependentUpon>Goods.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\category.cs" />

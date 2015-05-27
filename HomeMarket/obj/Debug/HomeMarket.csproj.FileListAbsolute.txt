@@ -122,3 +122,4 @@ D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.Membership.OpenAuth.xml
 D:\git\homemarket\HomeMarket\bin\Microsoft.AspNet.FriendlyUrls.xml
 D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.dll
 D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.pdb
+D:\git\homemarket\HomeMarket\obj\Debug\HomeMarket.csprojResolveAssemblyReference.cache
