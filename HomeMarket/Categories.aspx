@@ -12,10 +12,10 @@
     <div class="container-fluid">
         <asp:Repeater runat="server" ID="rptCategories">
             <HeaderTemplate>
-                <div class='row'>
+                <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
             </HeaderTemplate>
             <ItemTemplate>
-                <div class='col-xs-6 col-sm-4 col-md-3 col-lg-3'>
+                <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
                     <div class='thumbnail'>
                         <a href='/Goods/<%# Eval("ID") %>'>
                             <img src='data:image/png;base64,<%# Eval("Picture") %>' style='border: 1px solid #E6E6E6' />
@@ -124,4 +124,6 @@
             </asp:RoleGroup>
         </RoleGroups>
     </asp:LoginView>
+
+    <script src="/Scripts/masonry.pkgd.min.js"></script>
 </asp:Content>

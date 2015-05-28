@@ -11,12 +11,12 @@ namespace HomeMarket
     public partial class Goods : System.Web.UI.Page
     {
         private Models.Repository repository = new Models.Repository();
-        int iCategoryID = 0;
+        public int iCategoryID = 0;
         public string sCategoryName = "No Category";
 
         protected IEnumerable<Models.Good> GetGoodsByCategoryID(int Id)
         {
-            return (from good in repository.Goods where good.CategoryID == Id select good);
+            return (from good in repository.Goods orderby good.Name where good.CategoryID == Id select good);
         }
 
         protected Models.Good GetGoodByID(int Id)
@@ -25,7 +25,12 @@ namespace HomeMarket
             { return (from good in repository.Goods where good.ID == Id select good).First(); }
             catch (System.InvalidOperationException e)
             { }
-            return new Models.Good();
+
+            Models.Good goodEmpty = new Models.Good();
+            goodEmpty.Available = 0;
+            goodEmpty.Price = 0;
+
+            return goodEmpty;
         }
 
         protected void Page_Load(object sender, EventArgs e)
