@@ -13,6 +13,7 @@ namespace HomeMarket
         private Models.Repository repository = new Models.Repository();
         public int iCategoryID = 0;
         public string sCategoryName = "No Category";
+        public Models.category currentCategory = new Models.category();
 
         protected IEnumerable<Models.Good> GetGoodsByCategoryID(int Id)
         {
@@ -35,15 +36,20 @@ namespace HomeMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
-      
-            try // CategoryID should be valid Int32
-            { 
-                iCategoryID = Int32.Parse(RouteData.Values["CategoryID"].ToString().Equals("") ? "0" : RouteData.Values["CategoryID"].ToString());
-                sCategoryName = (from category in repository.Categories where category.ID == iCategoryID select category).First().Name;
+
+            Int32.TryParse(RouteData.Values["CategoryID"].ToString().Equals("") ? "0" : RouteData.Values["CategoryID"].ToString(), out iCategoryID);
+            try
+            {
+                currentCategory = (from category in repository.Categories where category.ID == iCategoryID select category).First();
+                sCategoryName = currentCategory.Name;
+                iCategoryID = currentCategory.ID;
             }
             catch (Exception ex)
-            { }
-            
+            {
+                sCategoryName = "No Category";
+                iCategoryID = 0;            
+            }
+
             rptGoods.DataSource = GetGoodsByCategoryID(iCategoryID);
             rptGoods.DataBind();
         }

@@ -2,14 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-
-    <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li class="active">Categories</li>
-    </ol>
-
-    <div class="container-fluid">
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Categories</li>
+        </ol>
         <asp:Repeater runat="server" ID="rptCategories">
             <HeaderTemplate>
                 <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
@@ -31,13 +28,11 @@
                                 <RoleGroups>
                                     <asp:RoleGroup Roles='admins'>
                                         <ContentTemplate>
-                                            <p>
-                                                <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Eval("ID")%>'>Edit</button>
-                                                <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#deleteCategoryModal' data-id='<%#Eval("ID")%>'>Delete</button>
-                                            </p>
+                                            <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Eval("ID")%>'>Edit</button>
+                                            <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#deleteCategoryModal' data-id='<%#Eval("ID")%>'>Delete</button>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>> Visible? </label>
+                                                    <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>>Visible?</label>
                                             </div>
                                         </ContentTemplate>
                                     </asp:RoleGroup>
@@ -51,8 +46,11 @@
                 </div>  <%--row--%>
             </FooterTemplate>
         </asp:Repeater>
-    </div>
 
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="FootContent" runat="server">
     <%--Admin modals--%>
 
     <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
@@ -126,4 +124,5 @@
     </asp:LoginView>
 
     <script src="/Scripts/masonry.pkgd.min.js"></script>
+
 </asp:Content>

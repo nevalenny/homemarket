@@ -23,6 +23,8 @@ namespace HomeMarket.Models
         public virtual DbSet<UsersOpenAuthAccount> UsersOpenAuthAccounts { get; set; }
         public virtual DbSet<UsersOpenAuthData> UsersOpenAuthDatas { get; set; }
 
+        public virtual DbSet<CartItem> CartItems { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<category>()

@@ -4,75 +4,82 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-
-    <ol class="breadcrumb">
-        <li><a href="/">Home</a></li>
-        <li><a href="/Categories">Categories</a></li>
-        <li class="active"><%: sCategoryName %></li>
-    </ol>
-
-    <div class="container-fluid">
-        <asp:Repeater runat="server" ID="rptGoods">
-            <HeaderTemplate>
-                <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
-                    <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
-                        <RoleGroups>
-                            <asp:RoleGroup Roles='admins'>
-                                <ContentTemplate>
-                                    <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
-                                        <p>
-                                            <button type='button' class='btn btn-warning btn-lg btn-block' data-toggle='modal' data-target='#addGoodModal' data-id='-1'>Add item</button>
-                                        </p>
-
-                                    </div>
-                                </ContentTemplate>
-                            </asp:RoleGroup>
-                        </RoleGroups>
-                    </asp:LoginView>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
-                    <div class='thumbnail'>
-                        <a href='/Goods/<%: iCategoryID.ToString() %>/<%# Eval("ID") %>'>
-                            <img src='data:image/png;base64,<%# Eval("Picture") %>' style='border: 1px solid #E6E6E6' />
-                        </a>
-                        <div class='caption'>
-                            <a href='/Goods/<%: iCategoryID.ToString() %>/<%# Eval("ID") %>'>
-                                <h4><%# Eval("Name")%></h4>
-                                <h5>Price: $<%# Eval("Price") %></h5>
-                            </a>
-                            <a href='/Goods/<%: iCategoryID.ToString() %>/<%# Eval("ID") %>'>
-                                <p><%# Eval("Description") %></p>
-                            </a>
-                            <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
-                                <RoleGroups>
-                                    <asp:RoleGroup Roles='admins'>
-                                        <ContentTemplate>
-                                            <p>
-                                                <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editGoodModal' data-id='<%#Eval("ID")%>'>Edit</button>
-                                                <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#deleteGoodModal' data-id='<%#Eval("ID")%>'>Delete</button>
-                                            </p>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>>
-                                                    Visible?
-                                                </label>
-                                            </div>
-                                        </ContentTemplate>
-                                    </asp:RoleGroup>
-                                </RoleGroups>
+    <nav>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/Categories">Categories</a></li>
+            <li class="active"><%: sCategoryName %></li>
+        </ol>
+    </nav>
+    <asp:Repeater runat="server" ID="rptGoods">
+        <HeaderTemplate>
+            <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
+                <%if (iCategoryID != 0)
+                  { %>
+                <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+                    <RoleGroups>
+                        <asp:RoleGroup Roles='admins'>
+                            <ContentTemplate>
+                                <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
+                                    <p>
+                                        <button type='button' class='btn btn-warning btn-lg btn-block' data-toggle='modal' data-target='#addGoodModal' data-id='-1'>Add item</button>
+                                    </p>
+                                </div>
+                            </ContentTemplate>
+                        </asp:RoleGroup>
+                    </RoleGroups>
+                </asp:LoginView>
+                <% } %>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
+                <div class='thumbnail'>
+                    <img src='data:image/png;base64,<%# Eval("Picture") %>' style='border: 1px solid #E6E6E6' />
+                    <div class='caption'>
+                        <h4><%# Eval("Name")%></h4>
+                        <h5>Price: $<%# Eval("Price") %></h5>
+                        <h5>Available: <%# Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0 ? Eval("Available") : "" %>
+                            <asp:LoginView runat="server" ViewStateMode="Disabled">
+                                <LoggedInTemplate>
+                                    <button type='button'
+                                        class='btn btn-xs <%# Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0 ? "btn-success" : "btn-default' disabled='disabled'" %>'
+                                        data-id='<%#Eval("ID")%>'>
+                                        <%# Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0 ? "Add to cart" : "Not available" %>
+                                    </button>
+                                </LoggedInTemplate>
                             </asp:LoginView>
-                        </div>
+                        </h5>
+                        <p><%# Eval("Description") %></p>
+                        <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+                            <RoleGroups>
+                                <asp:RoleGroup Roles='admins'>
+                                    <ContentTemplate>
+                                        <div class=""></div>
+                                        <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editGoodModal' data-id='<%#Eval("ID")%>'>Edit</button>
+                                        <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#deleteGoodModal' data-id='<%#Eval("ID")%>'>Delete</button>
+
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>>
+                                                Visible?
+                                            </label>
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:RoleGroup>
+                            </RoleGroups>
+                        </asp:LoginView>
                     </div>
                 </div>
-            </ItemTemplate>
-            <FooterTemplate>
-                </div>  <%--row--%>
-            </FooterTemplate>
-        </asp:Repeater>
-    </div>
+            </div>
+        </ItemTemplate>
+        <FooterTemplate>
+            </div>  <%--row--%>
+        </FooterTemplate>
+    </asp:Repeater>
+</asp:Content>
 
 
+<asp:Content ID="Content3" ContentPlaceHolderID="FootContent" runat="server">
     <%--Admin modals--%>
 
     <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
@@ -174,7 +181,5 @@
         </RoleGroups>
     </asp:LoginView>
 
-<script src="/Scripts/masonry.pkgd.min.js"></script>
+    <script src="/Scripts/masonry.pkgd.min.js"></script>
 </asp:Content>
-
-

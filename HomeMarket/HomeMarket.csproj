@@ -284,7 +284,9 @@
     <Compile Include="Goods.aspx.designer.cs">
       <DependentUpon>Goods.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Logic\CartActions.cs" />
     <Compile Include="Models\Application.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\category.cs" />
     <Compile Include="Models\Good.cs" />
     <Compile Include="Models\MarketContext.cs" />
