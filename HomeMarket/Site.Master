@@ -100,7 +100,7 @@
     </asp:LoginView>
 
 
-    <%: Scripts.Render("~/bundles/jquery") %>
-    <%: Scripts.Render("~/bundles/bootstrap") %>
+    <%:Scripts.Render("~/bundles/jquery")%>
+    <%:Scripts.Render("~/bundles/bootstrap")%>
 </body>
 </html>
