@@ -13,23 +13,24 @@
     </nav>
     <asp:Repeater runat="server" ID="rptGoods">
         <HeaderTemplate>
-            <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
-                <%if (iCategoryID != 0)
-                  { %>
-                <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
-                    <RoleGroups>
-                        <asp:RoleGroup Roles='admins'>
-                            <ContentTemplate>
-                                <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
-                                    <p>
-                                        <button type='button' class='btn btn-warning btn-lg btn-block' data-toggle='modal' data-target='#addGoodModal' data-id='-1'>Add item</button>
-                                    </p>
-                                </div>
-                            </ContentTemplate>
-                        </asp:RoleGroup>
-                    </RoleGroups>
-                </asp:LoginView>
-                <% } %>
+            <div class="container">
+                <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
+                    <%if (iCategoryID != 0)
+                      { %>
+                    <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+                        <RoleGroups>
+                            <asp:RoleGroup Roles='admins'>
+                                <ContentTemplate>
+                                    <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
+                                        <p>
+                                            <button type='button' class='btn btn-warning btn-lg btn-block' data-toggle='modal' data-target='#addGoodModal' data-id='-1'>Add item</button>
+                                        </p>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                        </RoleGroups>
+                    </asp:LoginView>
+                    <% } %>
         </HeaderTemplate>
         <ItemTemplate>
             <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
@@ -74,6 +75,7 @@
         </ItemTemplate>
         <FooterTemplate>
             </div>  <%--row--%>
+            </div> <%--container--%>
         </FooterTemplate>
     </asp:Repeater>
 </asp:Content>

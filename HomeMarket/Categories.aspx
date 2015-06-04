@@ -3,49 +3,64 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-        <ol class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            <li class="active">Categories</li>
-        </ol>
-        <asp:Repeater runat="server" ID="rptCategories">
-            <HeaderTemplate>
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Categories</li>
+    </ol>
+    <asp:Repeater runat="server" ID="rptCategories">
+        <HeaderTemplate>
+            <div class="container">
                 <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
-            </HeaderTemplate>
-            <ItemTemplate>
-                <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
-                    <div class='thumbnail'>
+                                        <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+                        <RoleGroups>
+                            <asp:RoleGroup Roles='admins'>
+                                <ContentTemplate>
+                                    <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
+                                        <p>
+                                            <button type='button' class='btn btn-warning btn-lg btn-block' data-toggle='modal' data-target='#addCategoryModal' data-id='-1'>Add category</button>
+                                        </p>
+                                    </div>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                        </RoleGroups>
+                    </asp:LoginView>
+        </HeaderTemplate>
+        <ItemTemplate>
+            <div class='col-xs-12 col-sm-4 col-md-3 col-lg-3'>
+                <div class='thumbnail'>
+                    <a href='/Goods/<%# Eval("ID") %>'>
+                        <img src='data:image/png;base64,<%# Eval("Picture") %>' style='border: 1px solid #E6E6E6' />
+                    </a>
+                    <div class='caption'>
                         <a href='/Goods/<%# Eval("ID") %>'>
-                            <img src='data:image/png;base64,<%# Eval("Picture") %>' style='border: 1px solid #E6E6E6' />
+                            <h3><%# Eval("Name")%></h3>
                         </a>
-                        <div class='caption'>
-                            <a href='/Goods/<%# Eval("ID") %>'>
-                                <h3><%# Eval("Name")%></h3>
-                            </a>
-                            <a href='/Goods/<%# Eval("ID") %>'>
-                                <p><%# Eval("Description") %></p>
-                            </a>
-                            <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
-                                <RoleGroups>
-                                    <asp:RoleGroup Roles='admins'>
-                                        <ContentTemplate>
-                                            <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Eval("ID")%>'>Edit</button>
-                                            <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#deleteCategoryModal' data-id='<%#Eval("ID")%>'>Delete</button>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>>Visible?</label>
-                                            </div>
-                                        </ContentTemplate>
-                                    </asp:RoleGroup>
-                                </RoleGroups>
-                            </asp:LoginView>
-                        </div>
+                        <a href='/Goods/<%# Eval("ID") %>'>
+                            <p><%# Eval("Description") %></p>
+                        </a>
+                        <asp:LoginView ID="AdminOptionsView" runat="server" ViewStateMode="Disabled">
+                            <RoleGroups>
+                                <asp:RoleGroup Roles='admins'>
+                                    <ContentTemplate>
+                                        <button type='button' class='btn btn-default btn-sm' data-toggle='modal' data-target='#editCategoryModal' data-id='<%#Eval("ID")%>'>Edit</button>
+                                        <button type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#deleteCategoryModal' data-id='<%#Eval("ID")%>'>Delete</button>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>>Visible?</label>
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:RoleGroup>
+                            </RoleGroups>
+                        </asp:LoginView>
                     </div>
                 </div>
-            </ItemTemplate>
-            <FooterTemplate>
-                </div>  <%--row--%>
-            </FooterTemplate>
-        </asp:Repeater>
+            </div>
+        </ItemTemplate>
+        <FooterTemplate>
+            </div>  <%--row--%>
+                </div>  <%--container--%>
+        </FooterTemplate>
+    </asp:Repeater>
 
 
 </asp:Content>
@@ -58,6 +73,34 @@
             <asp:RoleGroup Roles='admins'>
                 <ContentTemplate>
 
+                    <!-- Add Category Modal -->
+                    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="addCategoryModalLabel">Add Item</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class='thumbnail'>
+                                        <%
+                                            Response.Write(String.Format(@"<img src='data:image/png;base64,{2}' style='border:1px solid #E6E6E6'/>
+                              <div class='caption'>
+                                <h3>{0}</h3>
+                                <p>{1}</p>
+                              </div>
+                            </div>",
+                                                 emptyCategory.Name, emptyCategory.Description, emptyCategory.Picture, emptyCategory.ID));
+                                        %>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Edit Category Modal -->
                     <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">

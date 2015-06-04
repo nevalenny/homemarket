@@ -2,9 +2,12 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <hgroup class="title">
-        <h1><%: Title %>.</h1>
-    </hgroup>
+        <nav>
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Manage account</li>
+        </ol>
+    </nav>
 
     <section id="passwordForm">
         <asp:PlaceHolder runat="server" ID="successMessage" Visible="false" ViewStateMode="Disabled">

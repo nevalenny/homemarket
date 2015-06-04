@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using NLog;
 
 namespace HomeMarket
 {
@@ -13,6 +14,7 @@ namespace HomeMarket
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         protected void Page_Init(object sender, EventArgs e)
         {
