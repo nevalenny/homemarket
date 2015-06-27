@@ -119,7 +119,7 @@
                         </div>
                     </div>
 
-                    <!-- Edit Category Modal -->
+                    <!-- Edit Good Modal -->
                     <div class="modal fade" id="editGoodModal" tabindex="-1" role="dialog" aria-labelledby="editGoodModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -149,7 +149,7 @@
                         </div>
                     </div>
 
-                    <!-- Delete Category Modal -->
+                    <!-- Delete Good Modal -->
                     <div class="modal fade" id="deleteGoodModal" tabindex="-1" role="dialog" aria-labelledby="deleteGoodModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
