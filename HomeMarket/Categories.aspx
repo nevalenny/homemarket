@@ -9,7 +9,7 @@
     </ol>
 
     <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server" />
-    <asp:Repeater runat="server" ID="rpt_categories">
+    <asp:Repeater runat="server" ID="rpt_categories" OnItemDataBound="rpt_categories_ItemDataBound">
         <HeaderTemplate>
             <div class="container">
                 <div class='row js-masonry' data-masonry-options='{ "columnWidth": ".col-lg-3", "itemSelector": ".col-lg-3", "percentPosition" : true}'>
@@ -54,17 +54,17 @@
                             <RoleGroups>
                                 <asp:RoleGroup Roles='admins'>
                                     <ContentTemplate>
-                                        <asp:Button ID="btn_edit_category"
+                                        <asp:Button ID="btn_edit_category" 
+                                            runat="server"
                                             OnClick="btn_edit_category_Click"
                                             OnInit="btn_edit_category_Init"
+                                            CommandName="EditCategory"
                                             AutoPostBack="false"
-                                            runat="server"
                                             Text="Edit"
                                             type='button'
                                             class='btn btn-default btn-sm'
                                             data-toggle='modal'
-                                            data-target='#editCategoryModal'
-                                            data-id='<%#Eval("ID")%>' />
+                                            data-target='#editCategoryModal'/>
                                         <asp:Button ID="btn_delete_category"
                                             OnClick="btn_delete_category_Click"
                                             runat="server"
@@ -136,7 +136,7 @@
                                                         CssClass="col-md-4 control-label">Category Description</asp:Label>
                                                     <div class="col-md-8">
                                                         <asp:TextBox runat="server"
-                                                            Text="<%# emptyCategory.Description %>"
+                                                            Text=""
                                                             ID="tb_add_category_description"
                                                             CssClass="form-control" />
                                                     </div>
@@ -170,8 +170,11 @@
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <div class='thumbnail'>
-                                                            <asp:Image ID="img_edit_category" runat="server"/>
-                                                            <img src='data:image/png;base64,<%# editCategory.Picture %>' style='width: 108px; height: 108px; border: 1px solid #E6E6E6' />
+                                                            <asp:Image 
+                                                                ID='img_edit_category' 
+                                                                ImageUrl='data:image/png;base64,' 
+                                                                Style='width: 108px; height: 108px; border: 1px solid #E6E6E6'
+                                                                runat="server"/>
                                                             <div class='caption'>Select image</div>
                                                         </div>
                                                     </div>
@@ -181,7 +184,7 @@
                                                     <asp:Label runat="server" AssociatedControlID="tb_edit_category_name" CssClass="col-md-4 control-label">Category Name</asp:Label>
                                                     <div class="col-md-8">
                                                         <asp:TextBox runat="server"
-                                                            Text=""
+                                                            Text=" "
                                                             ID="tb_edit_category_name"
                                                             CssClass="form-control" />
                                                         <asp:RequiredFieldValidator runat="server"

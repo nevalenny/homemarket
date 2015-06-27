@@ -64,10 +64,10 @@ namespace HomeMarket
         {
             Button btn = sender as Button;
             int iCategoryID = -1;
-            Int32.TryParse(btn.Attributes["data-id"], out iCategoryID);
+            Int32.TryParse(btn.CommandArgument.ToString(), out iCategoryID);
             if(iCategoryID != -1)
             {
-                editCategory = GetCategoryById(3);
+                editCategory = GetCategoryById(iCategoryID);
 
                 if (Context.User.IsInRole("admins"))
                 {
@@ -75,6 +75,8 @@ namespace HomeMarket
                     if (tb_name != null) tb_name.Text = editCategory.Name;
                     TextBox tb_desc = (TextBox)lv_modals.FindControl("tb_edit_category_description");
                     if (tb_desc != null) tb_desc.Text = editCategory.Description;
+                    Image img = (Image)lv_modals.FindControl("img_edit_category");
+                    if (img != null) img.ImageUrl = "data:image/png;base64,"+editCategory.Picture;
                     ((UpdatePanel)lv_modals.FindControl("up_edit_category")).Update();
                 }
                 
@@ -102,6 +104,31 @@ namespace HomeMarket
         {
             Button btn_edit_category = sender as Button;
             ScriptManager1.RegisterAsyncPostBackControl(btn_edit_category);
+        }
+
+        protected void rpt_categories_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                Repeater rpt = sender as Repeater;
+                if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+                {
+                    try
+                    {
+                        Button btn = e.Item.FindControl("btn_edit_category") as Button;
+                        if (btn != null)
+                        {
+                            btn.CommandArgument = ((Models.category)e.Item.DataItem).ID.ToString();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.ErrorException("Error occured on setting up buttons attributes", ex);
+                    }
+                }
+
+            }
+
         }
 
     }
