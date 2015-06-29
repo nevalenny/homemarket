@@ -22,15 +22,6 @@ namespace HomeMarket {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// tb_search control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_search;
-        
-        /// <summary>
         /// rpt_categories control.
         /// </summary>
         /// <remarks>
