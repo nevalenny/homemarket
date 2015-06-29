@@ -46,6 +46,11 @@ namespace HomeMarket
             {
                 try
                 {
+                    if(User.IsInRole("admins"))
+                    {
+                        // show invisible categories too
+                        sds_categories.SelectCommand = "SELECT [ID], [Name], [Description], [Picture], [isVisible] FROM [categories] WHERE [isDeleted] = 'false'";
+                    }
                     rpt_categories.DataSource = sds_categories;//repository.Categories.ToList<Models.category>();
                     rpt_categories.DataBind();
 
@@ -125,13 +130,6 @@ namespace HomeMarket
                         Image img = (Image)lv_modals.FindControl("img_edit_category");
                         if (img != null) img.ImageUrl = editCategory.Picture;
 
-                        Button btn_save = (Button)lv_modals.FindControl("btn_edit_save");
-                        if (btn_save != null)
-                        {
-                            btn_save.CommandArgument = iCategoryID.ToString();
-                            btn_save.Enabled = true;
-                        }
-
                         ((UpdatePanel)lv_modals.FindControl("up_edit_category")).Update();
 
                     }
@@ -150,29 +148,11 @@ namespace HomeMarket
                         Image img = (Image)lv_modals.FindControl("img_delete_category");
                         if (img != null) img.ImageUrl = deleteCategory.Picture;
 
-                        Button btn_save = (Button)lv_modals.FindControl("btn_delete_save");
-                        if (btn_save != null) btn_save.CommandArgument = iCategoryID.ToString();
-
                         ((UpdatePanel)lv_modals.FindControl("up_delete_category")).Update();
 
                     }
                     break;
             }
-        }
-
-        protected void btn_edit_close_Click(object sender, EventArgs e)
-        {
-            TextBox tb_name = (TextBox)lv_modals.FindControl("tb_edit_category_name");
-            if (tb_name != null) tb_name.Text = "";
-
-            TextBox tb_desc = (TextBox)lv_modals.FindControl("tb_edit_category_description");
-            if (tb_desc != null) tb_desc.Text = "";
-
-            Image img = (Image)lv_modals.FindControl("img_edit_category");
-            if (img != null) img.ImageUrl = "";
-
-            System.Threading.Thread.Sleep(2000);
-            ((UpdatePanel)lv_modals.FindControl("up_edit_category")).Update();
         }
 
         protected void btn_edit_save_Click(object sender, EventArgs e)
@@ -187,14 +167,12 @@ namespace HomeMarket
             if (tb_desc != null) sds_categories.UpdateParameters.Add("Description", tb_desc.Text);
 
             CheckBox cb_iv = (CheckBox)lv_modals.FindControl("cb_edit_category_isvisible");
-            if (cb_iv != null) sds_categories.UpdateParameters.Add("isVisible", editCategory.isVisible.ToString());
+            if (cb_iv != null) sds_categories.UpdateParameters.Add("isVisible", cb_iv.Checked ? "1" : "0");
 
             Image img = (Image)lv_modals.FindControl("img_edit_category");
             if (img != null) sds_categories.UpdateParameters.Add("Picture", img.ImageUrl);
 
             sds_categories.Update();
-            rpt_categories.DataSource = sds_categories;
-            rpt_categories.DataBind();
             Response.Redirect("~/Categories");
         }
 
