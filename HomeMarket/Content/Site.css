@@ -4,7 +4,7 @@
 
 body {
     background-color: #fff;
-    padding-top: 50px;
+    padding-top: 60px;
     /*padding-bottom:-20px;*/
     color: #333;
     margin-right: auto;
@@ -23,11 +23,11 @@ body {
     overflow-y: auto;
 }
 
-#dropZone {
+/*#dropzone {
         background: gray;
         border: black dashed 1px;
         width: 200px;
         padding: 50px;
         text-align: center;
         color: white;
-    }
+    }*/

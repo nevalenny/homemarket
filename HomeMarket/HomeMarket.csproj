@@ -148,6 +148,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\gem.png" />
     <Content Include="Goods.aspx" />
     <Content Include="Icon.png" />
     <Content Include="Images\accent.png" />
@@ -165,6 +166,7 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\loading_spinner.gif" />
     <Content Include="packages.config" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
