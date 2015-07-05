@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server" />
-
     <div class="row">
         <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'>
             <ol class="breadcrumb">
@@ -53,13 +51,17 @@
                         <h4><%# Eval("Name")%></h4>
                         <h5>Price: $<%# Eval("Price") %></h5>
                         <h5>Available: <%# Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0 ? Eval("Available") : "" %>
-                            <asp:LoginView runat="server">
+                            <asp:LoginView runat="server" ID="lv_loggedin_buttons">
                                 <LoggedInTemplate>
-                                    <button type='button'
-                                        class='btn btn-xs <%# Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0 ? "btn-success" : "btn-default' disabled='disabled'" %>'
-                                        data-id='<%#Eval("ID")%>'>
-                                        <%# Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0 ? "Add to cart" : "Not available" %>
-                                    </button>
+                                    <asp:Button runat="server"
+                                        id="btn_add_to_cart"
+                                        type='button'
+                                        OnInit="btn_async_Init"                                        
+                                        CommandName="AddGoodToCart"
+                                        CommandArgument='<%# Eval("ID") %>'
+                                        AutoPostBack="false" 
+                                        CssClass='<%# (Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0) ? "btn btn-xs btn-success" : "btn btn-xs btn-default disabled" %>'                              
+                                        Text='<%# (Eval("Available")!=null && int.Parse(Eval("Available").ToString()) > 0) ? "Add to cart" : "Not available" %>' />
                                 </LoggedInTemplate>
                             </asp:LoginView>
                         </h5>
@@ -68,7 +70,8 @@
                             <RoleGroups>
                                 <asp:RoleGroup Roles='admins'>
                                     <ContentTemplate>
-                                        <asp:Button ID="btn_edit_good"
+                                        <asp:Button runat="server" 
+                                            ID="btn_edit_good"
                                             OnInit="btn_async_Init"
                                             CommandName="EditGood"
                                             CommandArgument='<%# Eval("ID") %>'
@@ -77,9 +80,9 @@
                                             type='button'
                                             class='btn btn-default btn-sm'
                                             data-toggle='modal'
-                                            data-target='#editGoodModal'
-                                            runat="server" />
-                                        <asp:Button ID="btn_delete_good"
+                                            data-target='#editGoodModal' />
+                                        <asp:Button runat="server" 
+                                            ID="btn_delete_good"
                                             OnInit="btn_async_Init"
                                             CommandName="DeleteGood"
                                             CommandArgument='<%# Eval("ID") %>'
@@ -88,8 +91,7 @@
                                             type='button'
                                             class='btn btn-danger btn-sm'
                                             data-toggle='modal'
-                                            data-target='#deleteGoodModal'
-                                            runat="server" />
+                                            data-target='#deleteGoodModal' />
 
                                         <div class="checkbox">
                                             <label>

@@ -7,6 +7,8 @@ namespace HomeMarket.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
+        public Models.Repository repository = new Models.Repository();
+
         protected string SuccessMessage
         {
             get;
@@ -38,12 +40,13 @@ namespace HomeMarket.Account
                     Form.Action = ResolveUrl("~/Account/Manage");
 
                     SuccessMessage =
-                        message == "ChangePwdSuccess" ? "Your password has been changed."
+                        message == "ChangeSuccess" ? "Your details have been changed."
                         : message == "SetPwdSuccess" ? "Your password has been set."
                         : message == "RemoveLoginSuccess" ? "The external login was removed."
                         : String.Empty;
                     successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
                 }
+                DataBind();
             }
 
         }

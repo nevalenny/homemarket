@@ -18,7 +18,7 @@ namespace HomeMarket.Logic
             UserCartId = GetUserCartId();
 
             var cartItem = _db.CartItems.SingleOrDefault(
-                c => c.ID == UserCartId
+                c => c.UserId == UserCartId
                 && c.GoodId == id);
             if (cartItem == null)
             {
@@ -45,8 +45,8 @@ namespace HomeMarket.Logic
         {
             UserCartId = GetUserCartId();
 
-            var cartItem = _db.CartItems.SingleOrDefault(
-                c => c.ID == UserCartId
+            var cartItem = _db.CartItems.First(
+                c => c.UserId == UserCartId
                 && c.GoodId == id);
             if (cartItem != null)
             {
@@ -58,6 +58,44 @@ namespace HomeMarket.Logic
             }
             _db.SaveChanges();
         }
+
+        public void BuyAll()
+        {
+            UserCartId = GetUserCartId();
+            Models.CartItem cartItem = new Models.CartItem();
+
+            try
+            {
+                cartItem = _db.CartItems.First(c => c.UserId == UserCartId);
+            }
+            catch
+            {
+            }
+
+            var user = _db.Users.First(u => u.UserName == UserCartId);
+
+            while(cartItem!=null && cartItem.Quantity>0)
+            {
+                var good = _db.goods.FirstOrDefault(g => g.ID == cartItem.Good.ID);
+                user.WalletBalance -= (decimal)cartItem.Good.Price;
+                good.Available--;
+                cartItem.Quantity--;
+                if (cartItem.Quantity <= 0)
+                {
+                    _db.CartItems.Remove(cartItem);
+                }
+                _db.SaveChanges();
+                try
+                {
+                    cartItem = _db.CartItems.First(c => c.UserId == UserCartId && c.Quantity > 0);
+                }
+                catch (Exception ex)
+                {
+                    cartItem = null;
+                }
+            }
+        }
+
 
         public void Dispose()
         {
@@ -88,8 +126,26 @@ namespace HomeMarket.Logic
         public List<Models.CartItem> GetCartItems()
         {
             UserCartId = GetUserCartId();
+            return _db.CartItems.Where(c => c.UserId == UserCartId).OrderBy(c => c.Good.Name).ToList();
+        }
+        public decimal TotalSum()
+        {
+            decimal sum = 0;
+            foreach (Models.CartItem item in GetCartItems())
+            {
+                sum += (decimal)item.Good.Price * item.Quantity;
+            }
+            return sum;
+        }
 
-            return _db.CartItems.Where(c => c.UserId == UserCartId).ToList();
+        public int TotalCount()
+        {
+            int count = 0;
+            foreach (Models.CartItem item in GetCartItems())
+            {
+                count += item.Quantity;
+            }
+            return count;
         }
 
     }

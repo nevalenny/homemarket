@@ -29,6 +29,8 @@ namespace HomeMarket.Models
         [Required]
         public string AvatarPicture { get; set; }
 
+        public string Name { get; set; }
+
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

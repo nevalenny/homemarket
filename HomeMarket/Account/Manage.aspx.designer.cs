@@ -7,13 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HomeMarket.Account
-{
-
-
-    public partial class Manage
-    {
-
+namespace HomeMarket.Account {
+    
+    
+    public partial class Manage {
+        
+        /// <summary>
+        /// lb_user_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_user_name;
+        
+        /// <summary>
+        /// lb_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_name;
+        
+        /// <summary>
+        /// lb_balance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_balance;
+        
         /// <summary>
         /// successMessage control.
         /// </summary>
@@ -22,7 +47,7 @@ namespace HomeMarket.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder successMessage;
-
+        
         /// <summary>
         /// setPassword control.
         /// </summary>
@@ -31,7 +56,7 @@ namespace HomeMarket.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder setPassword;
-
+        
         /// <summary>
         /// password control.
         /// </summary>
@@ -40,9 +65,7 @@ namespace HomeMarket.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox password;
-
-
-
+        
         /// <summary>
         /// confirmPassword control.
         /// </summary>
@@ -51,7 +74,7 @@ namespace HomeMarket.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox confirmPassword;
-
+        
         /// <summary>
         /// changePassword control.
         /// </summary>
@@ -60,7 +83,5 @@ namespace HomeMarket.Account
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder changePassword;
-
-
     }
 }

@@ -22,6 +22,15 @@ namespace HomeMarket {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
         
         /// <summary>
+        /// sm_master control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager sm_master;
+        
+        /// <summary>
         /// AdminOptionsView control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace HomeMarket {
         protected global::System.Web.UI.WebControls.LoginView AdminOptionsView;
         
         /// <summary>
+        /// lv_master control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginView lv_master;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>
@@ -38,6 +56,15 @@ namespace HomeMarket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        
+        /// <summary>
+        /// lv_modals control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginView lv_modals;
         
         /// <summary>
         /// FootContent control.

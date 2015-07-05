@@ -6,20 +6,24 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Routing;
 using NLog;
+using HomeMarket.Logic;
 
 namespace HomeMarket
 {
     public partial class Goods : System.Web.UI.Page
     {
         private Models.Repository repository = new Models.Repository();
+        private static Logger logger { get; set; }
+
         public static int iCategoryID = 0;
         public static string sCategoryName = "No Category";
+
         public Models.category currentCategory = new Models.category();
         public static Models.Good emptyGood = new Models.Good();
         public static Models.Good addGood = new Models.Good();
         public static Models.Good editGood = new Models.Good();
         public static Models.Good deleteGood = new Models.Good();
-        private static Logger logger { get; set; }
+
         public static String s_img_empty = "/Images/gem.png";
         public static String s_img_loading = "/Images/loading_spinner.gif";
 
@@ -59,7 +63,7 @@ namespace HomeMarket
             catch (Exception ex)
             {
                 sCategoryName = "No Category";
-                iCategoryID = 0; 
+                iCategoryID = 0;
                 logger.WarnException("Error getting category", ex);
             }
             sCategoryName = currentCategory.Name;
@@ -95,13 +99,15 @@ namespace HomeMarket
         protected void btn_sync_Init(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            ScriptManager1.RegisterPostBackControl(btn);
+            ScriptManager sm = Master.FindControl("sm_master") as ScriptManager;
+            if (sm != null) sm.RegisterPostBackControl(btn);
         }
 
         protected void btn_async_Init(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            ScriptManager1.RegisterAsyncPostBackControl(btn);
+            ScriptManager sm = Master.FindControl("sm_master") as ScriptManager;
+            if (sm != null) sm.RegisterAsyncPostBackControl(btn);
         }
 
 
@@ -178,6 +184,13 @@ namespace HomeMarket
 
                     }
                     break;
+                case "AddGoodToCart":
+                    if (iGoodID != -1 && !btn.Text.Equals("Not available"))
+                    {
+                        CartActions userCart = new CartActions();
+                        userCart.AddToCart(iGoodID);
+                    }
+                    break;
             }
         }
 
@@ -195,11 +208,11 @@ namespace HomeMarket
                 if (tb_desc != null) sds_goods.UpdateParameters.Add("Description", tb_desc.Text);
 
                 TextBox tb_price = (TextBox)lv_modals.FindControl("tb_edit_good_price");
-                if (tb_price != null) sds_goods.UpdateParameters.Add("Price", tb_price.Text.Replace(",",".")); // TODO implement culture specific decimal separator
+                if (tb_price != null) sds_goods.UpdateParameters.Add("Price", tb_price.Text.Replace(",", ".")); // TODO implement culture specific decimal separator
 
                 TextBox tb_available = (TextBox)lv_modals.FindControl("tb_edit_good_available");
                 if (tb_available != null) sds_goods.UpdateParameters.Add("Available", tb_available.Text);
-                
+
                 CheckBox cb_iv = (CheckBox)lv_modals.FindControl("cb_edit_good_isvisible");
                 if (cb_iv != null) sds_goods.UpdateParameters.Add("isVisible", cb_iv.Checked ? "1" : "0");
 
@@ -257,7 +270,7 @@ namespace HomeMarket
 
                 TextBox tb_available = (TextBox)lv_modals.FindControl("tb_add_good_available");
                 if (tb_available != null) sds_goods.InsertParameters.Add("Available", tb_available.Text);
-                
+
                 Image img = (Image)lv_modals.FindControl("img_add_good");
                 if (img != null) ;
                 sds_goods.InsertParameters.Add("Picture", s_img_empty); //TODO implement picture loading
@@ -272,9 +285,7 @@ namespace HomeMarket
                     return;
                 }
             }
-            Response.Redirect("~/Goods/"+iCategoryID.ToString());
+            Response.Redirect("~/Goods/" + iCategoryID.ToString());
         }
-
-
     }
 }

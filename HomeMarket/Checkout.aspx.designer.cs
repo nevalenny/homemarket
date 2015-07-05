@@ -10,33 +10,27 @@
 namespace HomeMarket {
     
     
-    public partial class Goods {
+    public partial class Checkout {
         
         /// <summary>
-        /// rpt_goods control.
+        /// rp_order control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rpt_goods;
+        protected global::System.Web.UI.WebControls.Repeater rp_order;
         
         /// <summary>
-        /// lv_modals control.
+        /// Master property.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Auto-generated property.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginView lv_modals;
-        
-        /// <summary>
-        /// sds_goods control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sds_goods;
+        public new HomeMarket.SiteMaster Master {
+            get {
+                return ((HomeMarket.SiteMaster)(base.Master));
+            }
+        }
     }
 }

@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="Categories" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="Categories.aspx.cs" Inherits="HomeMarket.Categories" %>
-
+<%@ MasterType virtualpath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server" />
 
     <div class="row">
         <div class='col-xs-8 col-sm-8 col-md-8 col-lg-8'>

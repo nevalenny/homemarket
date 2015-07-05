@@ -1,20 +1,47 @@
 ﻿<%@ Page Title="Manage Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="HomeMarket.Account.Manage" %>
+
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-        <nav>
+    <nav>
         <ol class="breadcrumb">
             <li><a href="/">Home</a></li>
             <li class="active">Manage account</li>
         </ol>
     </nav>
 
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-4">
+                <asp:Label runat="server"
+                    ID="lb_user_name"
+                    CssClass="form-control">Your login is <strong><%# User.Identity.Name %></strong>.</asp:Label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4">
+                <asp:Label runat="server"
+                    ID="lb_name"
+                    CssClass="form-control">Your name is <strong><%# repository.User.Name %></strong>.</asp:Label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4">
+                <asp:Label runat="server"
+                    ID="lb_balance"
+                    CssClass="form-control">Your wallet balance is <strong><%# repository.User.WalletBalance.ToString() %></strong>.</asp:Label>
+            </div>
+        </div>
+    </div>
+
+
     <section id="passwordForm">
         <asp:PlaceHolder runat="server" ID="successMessage" Visible="false" ViewStateMode="Disabled">
             <p class="message-success"><%: SuccessMessage %></p>
         </asp:PlaceHolder>
 
-        <p>You're logged in as <strong><%: User.Identity.Name %></strong>.</p>
 
         <asp:PlaceHolder runat="server" ID="setPassword" Visible="false">
             <p>
@@ -30,10 +57,10 @@
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="password"
                             CssClass="field-validation-error" ErrorMessage="The password field is required."
                             Display="Dynamic" ValidationGroup="SetPassword" />
-                        
+
                         <asp:ModelErrorMessage runat="server" ModelStateKey="NewPassword" AssociatedControlID="password"
                             CssClass="field-validation-error" SetFocusOnError="true" />
-                        
+
                     </li>
                     <li>
                         <asp:Label runat="server" AssociatedControlID="confirmPassword">Confirm password</asp:Label>
@@ -51,44 +78,57 @@
         </asp:PlaceHolder>
 
         <asp:PlaceHolder runat="server" ID="changePassword" Visible="false">
-            <h3>Change password</h3>
-            <asp:ChangePassword runat="server" CancelDestinationPageUrl="~/" ViewStateMode="Disabled" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangePwdSuccess">
+            <asp:ChangePassword runat="server" CancelDestinationPageUrl="~/Categories" RenderOuterTable="false" SuccessPageUrl="Manage?m=ChangeSuccess">
                 <ChangePasswordTemplate>
                     <p class="validation-summary-errors">
                         <asp:Literal runat="server" ID="FailureText" />
                     </p>
-                    <fieldset class="changePassword">
-                        <legend>Change password details</legend>
-                        <ol>
-                            <li>
-                                <asp:Label runat="server" ID="CurrentPasswordLabel" AssociatedControlID="CurrentPassword">Current password</asp:Label>
-                                <asp:TextBox runat="server" ID="CurrentPassword" CssClass="passwordEntry" TextMode="Password" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="CurrentPassword"
-                                    CssClass="field-validation-error" ErrorMessage="The current password field is required."
-                                    ValidationGroup="ChangePassword" />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" ID="NewPasswordLabel" AssociatedControlID="NewPassword">New password</asp:Label>
-                                <asp:TextBox runat="server" ID="NewPassword" CssClass="passwordEntry" TextMode="Password" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="NewPassword"
-                                    CssClass="field-validation-error" ErrorMessage="The new password is required."
-                                    ValidationGroup="ChangePassword" />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" ID="ConfirmNewPasswordLabel" AssociatedControlID="ConfirmNewPassword">Confirm new password</asp:Label>
-                                <asp:TextBox runat="server" ID="ConfirmNewPassword" CssClass="passwordEntry" TextMode="Password" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmNewPassword"
-                                    CssClass="field-validation-error" Display="Dynamic" ErrorMessage="Confirm new password is required."
-                                    ValidationGroup="ChangePassword" />
-                                <asp:CompareValidator runat="server" ControlToCompare="NewPassword" ControlToValidate="ConfirmNewPassword"
-                                    CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The new password and confirmation password do not match."
-                                    ValidationGroup="ChangePassword" />
-                            </li>
-                        </ol>
-                        <asp:Button runat="server" CommandName="ChangePassword" Text="Change password" ValidationGroup="ChangePassword" />
-                    </fieldset>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server"
+                                    ID="CurrentPassword"
+                                    CssClass="passwordEntry form-control" TextMode="Password" placeholder="Current password" required="" />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server"
+                                    ID="NewPassword"
+                                    type="password" data-minlength="6" CssClass="passwordEntry form-control" TextMode="Password" placeholder="New password" required="" />
+                                <span class="help-block with-errors">Minimum of 6 chars</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <asp:TextBox runat="server"
+                                    ID="ConfirmNewPassword"
+                                    data-match="#NewPassword" data-match-error="Whoops, these don't match" CssClass="passwordEntry form-control" TextMode="Password" placeholder="Confirm password" required="" />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <asp:Button runat="server" type="submit" CommandName="SaveChanges" Text="Change Password" ValidationGroup="ChangePassword" CssClass="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
                 </ChangePasswordTemplate>
             </asp:ChangePassword>
         </asp:PlaceHolder>
     </section>
-    </asp:Content>
+
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="FootContent" runat="server">
+    <script src="/Scripts/validator.js"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $('#ctl01').removeAttr('novalidate');
+            $('#passwordForm').validator();
+        })
+    </script>
+</asp:Content>

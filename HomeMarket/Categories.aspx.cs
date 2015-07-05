@@ -68,13 +68,15 @@ namespace HomeMarket
         protected void btn_sync_Init(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            ScriptManager1.RegisterPostBackControl(btn);
+            ScriptManager sm = Master.FindControl("sm_master") as ScriptManager;
+            if (sm!=null) sm.RegisterPostBackControl(btn);
         }
 
         protected void btn_async_Init(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            ScriptManager1.RegisterAsyncPostBackControl(btn);
+            Button btn = sender as Button; 
+            ScriptManager sm = Master.FindControl("sm_master") as ScriptManager;
+            if (sm != null) sm.RegisterAsyncPostBackControl(btn);
         }
 
        

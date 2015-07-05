@@ -13,15 +13,6 @@ namespace HomeMarket {
     public partial class Categories {
         
         /// <summary>
-        /// ScriptManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
         /// rpt_categories control.
         /// </summary>
         /// <remarks>
@@ -47,5 +38,17 @@ namespace HomeMarket {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource sds_categories;
+        
+        /// <summary>
+        /// Master property.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated property.
+        /// </remarks>
+        public new HomeMarket.SiteMaster Master {
+            get {
+                return ((HomeMarket.SiteMaster)(base.Master));
+            }
+        }
     }
 }

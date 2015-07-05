@@ -18,5 +18,10 @@ namespace HomeMarket.Models
             get { return context.goods; }
         }
 
+        public User User
+        {
+            get { return (from user in context.Users where user.UserName == HttpContext.Current.User.Identity.Name select user).First(); }
+        }
+
     }
 }

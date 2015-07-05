@@ -7,7 +7,7 @@
     <title><%: Page.Title %> - HomeMarket</title>
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/Content/css") %>
-<%--        <%: Styles.Render("~/Content/dropzonescss") %>--%>
+        <%--        <%: Styles.Render("~/Content/dropzonescss") %>--%>
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -16,6 +16,7 @@
 </head>
 <body>
     <form runat="server" novalidate="">
+        <asp:ScriptManager ID="sm_master" EnablePartialRendering="true" runat="server" />
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -43,7 +44,7 @@
 
                     </ul>
                     <section id="login">
-                        <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <asp:LoginView runat="server" id="lv_master">
                             <AnonymousTemplate>
                                 <ul class="nav navbar-nav navbar-right">
                                     <li id="registerLink"><a runat="server" href="~/Account/Register">Register</a></li>
@@ -52,13 +53,18 @@
                             </AnonymousTemplate>
                             <LoggedInTemplate>
                                 <div class="navbar-text navbar-right">
-                                    Hello, <%# Context.User.Identity.Name %><a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
-                                        <asp:LoginName runat="server" CssClass="username" />
-                                    </a>!
-                                    <button type='button' class='btn btn-success btn-xs' data-toggle='modal' data-target='#showCart'>Your cart <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                                    Hello, <a runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                        <%# repository.User.Name %>
+                                    </a>! Your wallet balance is $<%# repository.User.WalletBalance %>
+                                    <asp:Button runat="server"
+                                        ID="btn_show_cart"
+                                        OnInit="btn_show_cart_Init"
+                                        OnClick="btn_show_cart_Click"
+                                        type='button' class='btn btn-success btn-xs' data-toggle='modal' data-target='#showCartModal'
+                                        Text="Your cart" />
 
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Categories" />
-                                    &nbsp&nbsp&nbsp
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true">&nbsp&nbsp&nbsp
                                 </div>
                             </LoggedInTemplate>
                         </asp:LoginView>
@@ -75,27 +81,79 @@
             </div>
         </div>
 
-        <%: Scripts.Render("~/bundles/jquery" ) %>
-        <%: Scripts.Render("~/bundles/bootstrap") %>
-        
-        <asp:ContentPlaceHolder runat="server" ID="FootContent" />
-
-        <%: Scripts.Render("~/bundles/dropzonescripts") %>
 
         <%--Cart modal--%>
-        <asp:LoginView runat="server" ViewStateMode="Disabled">
+        <asp:LoginView runat="server" ID="lv_modals">
             <LoggedInTemplate>
-                <div class="modal fade" id="showCart" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+                <div class="modal fade" id="showCartModal" tabindex="-1" role="dialog" aria-labelledby="showCartLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="showCartLabel">Your Cart</h4>
                             </div>
+
+                            <asp:UpdatePanel ID="up_cart" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                                <ContentTemplate>
+
+                                    <asp:Repeater runat="server"
+                                        ID="rp_cart" OnItemCommand="rp_cart_ItemCommand">
+                                        <HeaderTemplate>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Name</th>
+                                                                <th>Price</th>
+                                                                <th>Qty</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <tr>
+                                                <th><%# rp_cart.Items.Count + 1 %></th>
+                                                <th><%# Eval("Good.Name") %></th>
+                                                <th>$<%# Eval("Good.Price") %></th>
+                                                <th><%# Eval("Quantity") %></th>
+                                                <th><asp:Button runat="server" Text="X" CssClass="btn btn-xs btn-danger"
+                                                    id="btn_remove_item"
+                                                    OnInit="btn_show_cart_Init"
+                                                    CommandName="RemoveItem"
+                                                    CommandArgument='<%# Eval("GoodId") %>' /></th>
+                                            </tr>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="success">
+                                                    <th></th>
+                                                    <th>Total</th>
+                                                    <th>$<%# dTotalSum %></th>
+                                                    <th><%# iTotalCount %></th>
+                                                    <th></th>
+                                                </tr>
+                                            </tfoot>
+                                            </table>     
+                                            </div>
+                                            </div>                                               
+                                        </FooterTemplate>
+                                    </asp:Repeater>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+
                             <div class="modal-body">
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Checkout</button>
+                                    <asp:Button runat="server"
+                                        ID="btn_buy"
+                                        OnClick="btn_buy_Click"
+                                        type="submit" class="btn btn-success" Text="Buy" />
                                 </div>
                             </div>
                         </div>
@@ -103,6 +161,14 @@
                 </div>
             </LoggedInTemplate>
         </asp:LoginView>
+
+
+        <%: Scripts.Render("~/bundles/jquery" ) %>
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+
+        <asp:ContentPlaceHolder runat="server" ID="FootContent" />
+
+        <%: Scripts.Render("~/bundles/dropzonescripts") %>
     </form>
 
 

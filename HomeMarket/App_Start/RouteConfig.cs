@@ -13,6 +13,7 @@ namespace HomeMarket
             routes.MapPageRoute("", "Goods/{CategoryID}", "~/Goods.aspx", true, new RouteValueDictionary { { "CategoryID", @"\d{1,8}" } });
             routes.MapPageRoute("", "goods/{CategoryID}", "~/Goods.aspx", true, new RouteValueDictionary { { "CategoryID", @"\d{1,8}" } });
             routes.MapPageRoute("", "categories", "~/Categories.aspx");
+            routes.MapPageRoute("", "Checkout", "~/Checkout.aspx");
             routes.MapPageRoute("", "", "~/Categories.aspx");
             routes.EnableFriendlyUrls();
         }
