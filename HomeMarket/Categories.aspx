@@ -33,7 +33,7 @@
                                             <asp:Button ID="btn_add"
                                                 runat="server"
                                                 AutoPostBack="false"
-                                                OnInit="btn_add_Init"
+                                                OnInit="btn_async_Init"
                                                 type='button'
                                                 class='btn btn-warning btn-lg btn-block'
                                                 data-toggle='modal'
@@ -61,32 +61,32 @@
                             <RoleGroups>
                                 <asp:RoleGroup Roles='admins'>
                                     <ContentTemplate>
-                                            <asp:Button ID="btn_edit_category"
-                                                OnInit="btn_edit_category_Init"
-                                                CommandName="EditCategory"
-                                                CommandArgument='<%# Eval("ID") %>'
-                                                AutoPostBack="false"
-                                                Text="Edit"
-                                                type='button'
-                                                class='btn btn-default btn-sm'
-                                                data-toggle='modal'
-                                                data-target='#editCategoryModal'
-                                                runat="server" />
-                                            <asp:Button ID="btn_delete_category"
-                                                OnInit="btn_delete_category_Init"
-                                                CommandName="DeleteCategory"
-                                                CommandArgument='<%# Eval("ID") %>'
-                                                AutoPostBack="false"
-                                                Text="Delete"
-                                                type='button'
-                                                class='btn btn-danger btn-sm'
-                                                data-toggle='modal'
-                                                data-target='#deleteCategoryModal'
-                                                runat="server" />
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>>Show?</label>
-                                            </div>
+                                        <asp:Button ID="btn_edit_category"
+                                            OnInit="btn_async_Init"
+                                            CommandName="EditCategory"
+                                            CommandArgument='<%# Eval("ID") %>'
+                                            AutoPostBack="false"
+                                            Text="Edit"
+                                            type='button'
+                                            class='btn btn-default btn-sm'
+                                            data-toggle='modal'
+                                            data-target='#editCategoryModal'
+                                            runat="server" />
+                                        <asp:Button ID="btn_delete_category"
+                                            OnInit="btn_async_Init"
+                                            CommandName="DeleteCategory"
+                                            CommandArgument='<%# Eval("ID") %>'
+                                            AutoPostBack="false"
+                                            Text="Delete"
+                                            type='button'
+                                            class='btn btn-danger btn-sm'
+                                            data-toggle='modal'
+                                            data-target='#deleteCategoryModal'
+                                            runat="server" />
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" disabled <%# Eval("isVisible").Equals(true)? "checked" : ""%>>Visible?</label>
+                                        </div>
 
                                     </ContentTemplate>
                                 </asp:RoleGroup>
@@ -120,43 +120,44 @@
                                 <div class="modal-body">
                                     <asp:UpdatePanel ID="up_add_category" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
                                         <ContentTemplate>
+                                            <%-- Picture --%>
                                             <div class="form-horizontal">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <div class='thumbnail'>
                                                             <img src='<%= s_img_empty %>' style='width: 108px; height: 108px; border: 1px solid #E6E6E6' />
-                                                            <div class='caption'>Select image</div>
                                                         </div>
                                                     </div>
                                                 </div>
 
+                                                <%-- Name --%>
                                                 <div class="form-group">
-                                                    <asp:Label runat="server" AssociatedControlID="tb_add_category_name" CssClass="col-md-4 control-label">Category Name</asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:TextBox runat="server" ID="tb_add_category_name" CssClass="form-control" />
-                                                        <asp:RequiredFieldValidator runat="server" ControlToValidate="tb_add_category_name" CssClass="text-danger" ErrorMessage="The category name field is required." />
+                                                    <div class="col-md-12">
+                                                        <asp:TextBox runat="server" ID="tb_add_category_name" placeholder="Category Name" MaxLength="50" type="text" required="" CssClass="form-control" />
+                                                        <span class="help-block with-errors">up to 50 letters</span>
                                                     </div>
                                                 </div>
 
+                                                <%-- Description --%>
                                                 <div class="form-group">
-                                                    <asp:Label runat="server"
-                                                        AssociatedControlID="tb_add_category_description"
-                                                        CssClass="col-md-4 control-label">Category Description</asp:Label>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <asp:TextBox runat="server"
-                                                            Text=""
                                                             ID="tb_add_category_description"
+                                                            TextMode="multiline"
+                                                            Rows="4" type="text" pattern="/^.{0,200}$/"
+                                                            Style="resize: none;"
+                                                            placeholder="Category Description"
                                                             CssClass="form-control" />
+                                                        <span class="help-block with-errors">up to 200 letters</span>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </ContentTemplate>
                                     </asp:UpdatePanel>
                                 </div>
                                 <div class="modal-footer">
                                     <asp:Button runat="server" type="button" class="btn btn-default" data-dismiss="modal" Text="Close" />
-                                    <asp:Button runat="server" ID="btn_add_category" OnInit="btn_add_category_Init" OnClick="btn_add_category_Click" type="submit" class="btn btn-primary" Text="Save changes" />
+                                    <asp:Button runat="server" ID="btn_add_category" OnInit="btn_sync_Init" OnClick="btn_add_category_Click" type="submit" class="btn btn-primary" Text="Save changes" />
                                 </div>
                             </div>
                         </div>
@@ -173,7 +174,7 @@
                                 <div class="modal-body">
                                     <asp:UpdatePanel ID="up_edit_category" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="false">
                                         <ContentTemplate>
-
+                                            <%-- Picture --%>
                                             <div class="form-horizontal">
                                                 <div class="form-group">
                                                     <div class="col-md-12">
@@ -183,48 +184,43 @@
                                                                 ImageUrl="<%# s_img_loading %>"
                                                                 Style='width: 108px; height: 108px; border: 1px solid #E6E6E6'
                                                                 runat="server" />
-                                                            <div class="caption">Drop image file here or click to browse.</div>
                                                         </div>
                                                     </div>
                                                 </div>
 
+                                                <%-- Name --%>
                                                 <div class="form-group">
-                                                    <asp:Label runat="server" AssociatedControlID="tb_edit_category_name" CssClass="col-md-4 control-label">Category Name</asp:Label>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <asp:TextBox runat="server"
-                                                            Text="Loading.."
+                                                            Text="" placeholder="Category Name" MaxLength="50" required="" type="text"
                                                             ID="tb_edit_category_name"
                                                             CssClass="form-control" Enabled="false" />
-                                                        <asp:RequiredFieldValidator runat="server"
-                                                            ControlToValidate="tb_edit_category_name"
-                                                            CssClass="text-danger"
-                                                            ErrorMessage="The category name field is required." />
+                                                    <span class="help-block with-errors">up to 50 letters</span>
                                                     </div>
                                                 </div>
 
+                                                <%-- Description --%>
                                                 <div class="form-group">
-                                                    <asp:Label runat="server"
-                                                        AssociatedControlID="tb_edit_category_description"
-                                                        CssClass="col-md-4 control-label">Category Description</asp:Label>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <asp:TextBox runat="server"
-                                                            Text="Loading.."
-                                                            TextMode="multiline"
-                                                            Rows="4"
                                                             ID="tb_edit_category_description"
+                                                            type="text"
+                                                            Text="Loading.."
+                                                            placeholder="Category Description"
+                                                            TextMode="multiline"
+                                                            Rows="3" pattern="/^.{0,200}$/"
                                                             Style="resize: none;"
                                                             CssClass="form-control" Enabled="false" />
+                                                    <span class="help-block with-errors">up to 200 letters</span>
                                                     </div>
                                                 </div>
 
+                                                <%-- Is Visible? --%>
                                                 <div class="form-group">
-                                                    <asp:Label runat="server"
-                                                        AssociatedControlID="cb_edit_category_isvisible"
-                                                        CssClass="col-md-4 control-label">Is Visible?</asp:Label>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-12">
                                                         <asp:CheckBox runat="server" Checked="true"
                                                             ID="cb_edit_category_isvisible"
-                                                            Enabled="false" />
+                                                            Enabled="false" Text="Visible?" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -238,12 +234,7 @@
                                         Text="Close" />
                                     <asp:Button runat="server"
                                         ID="btn_edit_save"
-                                        Enabled="true"
-                                        CommandName="SaveCategory"
-                                        AutoPostBack="true"
-                                        OnInit="btn_edit_save_Init"
-                                        OnClick="btn_edit_save_Click"
-                                        type="submit" class="btn btn-primary"
+                                        type="submit" class="btn btn-primary" Enabled="true" CommandName="SaveCategory" AutoPostBack="true" OnInit="btn_sync_Init" OnClick="btn_edit_save_Click"
                                         Text="Save changes" />
                                 </div>
                             </div>
@@ -288,7 +279,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:Button runat="server" ID="btn_delete_close" type="button" class="btn btn-default" data-dismiss="modal" Text="Cancel" />
-                                    <asp:Button runat="server" OnInit="btn_delete_save_Init" OnClick="btn_delete_save_Click" ID="btn_delete_save" type="submit" class="btn btn-danger" Text="Delete" />
+                                    <asp:Button runat="server" OnInit="btn_sync_Init" OnClick="btn_delete_save_Click" ID="btn_delete_save" type="submit" class="btn btn-danger" Text="Delete" />
                                 </div>
                             </div>
                         </div>
@@ -331,6 +322,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="FootContent" runat="server">
 
     <script src="/Scripts/masonry.pkgd.min.js"></script>
+    <script src="/Scripts/validator.js"></script>
 
     <%-- some client-side magics --%>
     <script type="text/javascript">
@@ -339,29 +331,60 @@
         $().ready(function () {
             //setup dropzone
 
-            $("div#dz_edit_category").dropzone({ url: "/Categories" });
+            //$("div#dz_edit_category").dropzone({ url: "/Categories" });
 
             // clean dialogs on close
             var img_empty = '<%: s_img_empty %>';
             var img_loading = '<%: s_img_loading %>';
 
+
+            $('#addCategoryModal').on('shown.bs.modal', function () {
+                $('#ctl01').removeAttr('novalidate');
+
+                $("#MainContent_lv_modals_tb_add_category_name").attr('required', '');
+                $("#MainContent_lv_modals_tb_edit_category_name").removeAttr('required');
+
+                $('#addCategoryModal').validator();
+            })
+
             $('#addCategoryModal').on('hidden.bs.modal', function () {
-                $('[ID="MainContent_lv_modals_img_add_category"]').attr('src', img_empty);
-                $('[ID="MainContent_lv_modals_tb_add_category_name"]').attr('value', '');
-                $('[ID="MainContent_lv_modals_tb_add_category_description"]').attr('value', '');
+                $('#ctl01').attr('novalidate', '');
+                $("#MainContent_lv_modals_img_add_category").attr('src', img_empty);
+                $("#MainContent_lv_modals_tb_add_category_name").attr('value', '');
+                $("#MainContent_lv_modals_tb_add_category_description").attr('value', '');
+            })
+
+            $('#editCategoryModal').on('shown.bs.modal', function () {
+                $('#ctl01').removeAttr('novalidate');
+
+                $("#MainContent_lv_modals_tb_edit_category_name").attr('required', '');
+                $("#MainContent_lv_modals_tb_add_category_name").removeAttr('required');
+
+                $('#editCategoryModal').validator();
             })
 
             $('#editCategoryModal').on('hidden.bs.modal', function () {
-                $('[ID="MainContent_lv_modals_img_edit_category"]').attr('src', img_loading);
-                $('[ID="MainContent_lv_modals_tb_edit_category_name"]').attr('value', 'Loading..');
-                $('[ID="MainContent_lv_modals_tb_edit_category_name"]').prop('disabled', 'true');
-                $('[ID="MainContent_lv_modals_tb_edit_category_description"]').attr('value', 'Loading..');
-                $('[ID="MainContent_lv_modals_tb_edit_category_description"]').prop('disabled', 'true');
-                $('[ID="MainContent_lv_modals_cb_edit_category_isvisible"]').prop('disabled', 'true');
+                $('#ctl01').attr('novalidate', '');
+                $("#MainContent_lv_modals_img_edit_category").attr('src', img_loading);
+                $("#MainContent_lv_modals_tb_edit_category_name").attr('value', '');
+                $("#MainContent_lv_modals_tb_edit_category_name").prop('disabled', 'true');
+                $("#MainContent_lv_modals_tb_edit_category_description").attr('value', 'Loading..');
+                $("#MainContent_lv_modals_tb_edit_category_description").prop('disabled', 'true');
+                $("#MainContent_lv_modals_cb_edit_category_isvisible").prop('disabled', 'true');
+            })
+
+            $('#deleteCategoryModal').on('shown.bs.modal', function () {
+                $('#ctl01').removeAttr('novalidate');
+
+                $("#MainContent_lv_modals_tb_edit_category_name").removeAttr('required');
+                $("#MainContent_lv_modals_tb_add_category_name").removeAttr('required');
+
+                $('#deleteCategoryModal').validator();
             })
 
             $('#deleteCategoryModal').on('hidden.bs.modal', function () {
-                $('[ID="MainContent_lv_modals_img_delete_category"]').attr('src', img_loading);
+                $('#ctl01').attr('novalidate', '');
+                $("#MainContent_lv_modals_img_delete_category").attr('src', img_loading);
                 $("#MainContent_lv_modals_lb_delete_category_name").text('Loading..');
                 $("#MainContent_lv_modals_lb_delete_category_description").text('Loading..');
 

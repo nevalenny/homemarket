@@ -65,37 +65,19 @@ namespace HomeMarket
             lv_modals.DataBind();
         }
 
-        protected void btn_add_category_Init(object sender, EventArgs e)
+        protected void btn_sync_Init(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             ScriptManager1.RegisterPostBackControl(btn);
         }
 
-        protected void btn_edit_category_Init(object sender, EventArgs e)
-        {
-            Button btn_edit_category = sender as Button;
-            ScriptManager1.RegisterAsyncPostBackControl(btn_edit_category);
-        }
-
-        protected void btn_delete_category_Init(object sender, EventArgs e)
+        protected void btn_async_Init(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             ScriptManager1.RegisterAsyncPostBackControl(btn);
         }
 
-        protected void btn_edit_close_Init(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            ScriptManager1.RegisterAsyncPostBackControl(btn);
-        }
-
-        protected void btn_edit_save_Init(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            ScriptManager1.RegisterPostBackControl(btn);
-        }
-
-
+       
         protected void rpt_categories_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             Button btn = e.CommandSource as Button;
@@ -160,31 +142,36 @@ namespace HomeMarket
 
         protected void btn_edit_save_Click(object sender, EventArgs e)
         {
-            sds_categories.UpdateParameters.Clear();
-            sds_categories.UpdateParameters.Add("ID", editCategory.ID.ToString());
+            if (IsValid)
+            {
+                sds_categories.UpdateParameters.Clear();
+                sds_categories.UpdateParameters.Add("ID", editCategory.ID.ToString());
 
-            TextBox tb_name = (TextBox)lv_modals.FindControl("tb_edit_category_name");
-            if (tb_name != null) sds_categories.UpdateParameters.Add("Name", tb_name.Text);
+                TextBox tb_name = (TextBox)lv_modals.FindControl("tb_edit_category_name");
+                if (tb_name != null) sds_categories.UpdateParameters.Add("Name", tb_name.Text);
 
-            TextBox tb_desc = (TextBox)lv_modals.FindControl("tb_edit_category_description");
-            if (tb_desc != null) sds_categories.UpdateParameters.Add("Description", tb_desc.Text);
+                TextBox tb_desc = (TextBox)lv_modals.FindControl("tb_edit_category_description");
+                if (tb_desc != null) sds_categories.UpdateParameters.Add("Description", tb_desc.Text);
 
-            CheckBox cb_iv = (CheckBox)lv_modals.FindControl("cb_edit_category_isvisible");
-            if (cb_iv != null) sds_categories.UpdateParameters.Add("isVisible", cb_iv.Checked ? "1" : "0");
+                CheckBox cb_iv = (CheckBox)lv_modals.FindControl("cb_edit_category_isvisible");
+                if (cb_iv != null) sds_categories.UpdateParameters.Add("isVisible", cb_iv.Checked ? "1" : "0");
 
-            Image img = (Image)lv_modals.FindControl("img_edit_category");
-            if (img != null) sds_categories.UpdateParameters.Add("Picture", editCategory.Picture); //TODO implement picture loading
+                Image img = (Image)lv_modals.FindControl("img_edit_category");
+                if (img != null) sds_categories.UpdateParameters.Add("Picture", editCategory.Picture); //TODO implement picture loading
 
-            sds_categories.Update();
+                try
+                {
+                    sds_categories.Update();
+                }
+                catch (Exception ex)
+                {
+                    logger.ErrorException("Error updating database", ex);
+                }
+            }
             Response.Redirect("~/Categories");
         }
 
-        protected void btn_delete_save_Init(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            ScriptManager1.RegisterPostBackControl(btn);
-        }
-
+       
         protected void btn_delete_save_Click(object sender, EventArgs e)
         {
             sds_categories.DeleteParameters.Clear();
@@ -196,28 +183,25 @@ namespace HomeMarket
 
         protected void btn_add_category_Click(object sender, EventArgs e)
         {
-            sds_categories.InsertParameters.Clear();
-            sds_categories.InsertParameters.Add("ID", addCategory.ID.ToString());
+            if (IsValid)
+            {
+                sds_categories.InsertParameters.Clear();
+                sds_categories.InsertParameters.Add("ID", addCategory.ID.ToString());
 
-            TextBox tb_name = (TextBox)lv_modals.FindControl("tb_add_category_name");
-            if (tb_name != null) sds_categories.InsertParameters.Add("Name", tb_name.Text);
+                TextBox tb_name = (TextBox)lv_modals.FindControl("tb_add_category_name");
+                if (tb_name != null) sds_categories.InsertParameters.Add("Name", tb_name.Text);
 
-            TextBox tb_desc = (TextBox)lv_modals.FindControl("tb_add_category_description");
-            if (tb_desc != null) sds_categories.InsertParameters.Add("Description", tb_desc.Text);
+                TextBox tb_desc = (TextBox)lv_modals.FindControl("tb_add_category_description");
+                if (tb_desc != null) sds_categories.InsertParameters.Add("Description", tb_desc.Text);
 
-            Image img = (Image)lv_modals.FindControl("img_add_category");
-            if (img != null) ;
-            sds_categories.InsertParameters.Add("Picture", s_img_empty); //TODO implement picture loading
+                Image img = (Image)lv_modals.FindControl("img_add_category");
+                if (img != null) ;
+                sds_categories.InsertParameters.Add("Picture", s_img_empty); //TODO implement picture loading
 
-            sds_categories.Insert();
+                sds_categories.Insert();
+
+            }
             Response.Redirect("~/Categories");
-
-        }
-
-        protected void btn_add_Init(object sender, EventArgs e)
-        {
-            Button btn = sender as Button;
-            ScriptManager1.RegisterAsyncPostBackControl(btn);
         }
 
     }
