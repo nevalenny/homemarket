@@ -17,13 +17,16 @@ namespace HomeMarket
         public static decimal dTotalSum = 0;
         public static int iTotalCount = 0;
         public static bool isItemsRemoved = false;
+        public static bool isNotEnoughMoney = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                if(!Context.User.Identity.Name.Equals(""))
+                if(Context.User.Identity.IsAuthenticated)
                 {
+                    isItemsRemoved = false;
+                    isNotEnoughMoney = false;
                     CartActions userCart = new CartActions();
                     List<Models.CartItem> ds_items = userCart.GetCartItems();
                     foreach (Models.CartItem item in ds_items)
@@ -43,8 +46,13 @@ namespace HomeMarket
                     repository.User.WalletBalance -= dTotalSum;
 
                     rp_order.DataBind();
-                    
-                    userCart.BuyAll();
+
+                    rp_receipt.DataSource = userCart.BuyAll();
+                    if(rp_order.Items.Count>rp_receipt.Items.Count)
+                    {
+                        isNotEnoughMoney = true;
+                    }
+                    rp_receipt.DataBind();
                 }
             }
         }

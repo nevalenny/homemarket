@@ -8,6 +8,9 @@
         ID="rp_order">
         <HeaderTemplate>
             <div class="row">
+                <div class="col-md-8">
+                    <h4>Your order was:</h4>
+                </div>
                 <div class="col-md-12">
                     <table class="table table-striped">
                         <thead>
@@ -15,7 +18,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Price</th>
-                                <th>Qty</th>
+                                <th>Qty<div class="danger"><%# isItemsRemoved?"*":"" %></div></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +43,25 @@
                                             </tfoot>
             </table>     
                                             </div>
-                                            </div>                                               
+                                            </div>     
+            <h5><div class="danger"><%# isItemsRemoved?"* some items were removed - not enough stock":"" %></div></h5>                                          
+        </FooterTemplate>
+    </asp:Repeater>
+    <asp:Repeater runat="server"
+        ID="rp_receipt">
+        <HeaderTemplate>
+            <hr />
+            <%# !isNotEnoughMoney?
+                "<div class='btn btn-success'>Your order was successful! Thanks for shopping at <strong>HomeMarket</strong></div>":
+                "<div class='btn btn-danger'>Your order was not successful! Looks like you have not enough money!</div>" %>
+        </HeaderTemplate>
+        <ItemTemplate>
+               <h5>Order #<%# rp_receipt.Items.Count + 1 %> - tracking number: <%# Eval("OrderID") %></h5>
+
+        </ItemTemplate>
+        <FooterTemplate>
+            <h4>Save those order numbers to track your order, or <asp:Button runat="server" Text="Print" CssClass="btn btn-primary" OnClientClick="print()"/></h4>
+            <h4><a href="Categories">Continue shopping</a></h4>
         </FooterTemplate>
     </asp:Repeater>
 

@@ -75,7 +75,7 @@ namespace HomeMarket
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack && !Context.User.Identity.Name.Equals(""))
+            if (!IsPostBack && Context.User.Identity.IsAuthenticated)
             {
                 lv_master.DataBind();
             }

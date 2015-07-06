@@ -16,7 +16,7 @@ namespace HomeMarket.Logic
         public void AddToCart(int id)
         {
             UserCartId = GetUserCartId();
-
+            _db.SaveChanges();
             var cartItem = _db.CartItems.SingleOrDefault(
                 c => c.UserId == UserCartId
                 && c.GoodId == id);
@@ -51,7 +51,7 @@ namespace HomeMarket.Logic
             if (cartItem != null)
             {
                 cartItem.Quantity--;
-                if(cartItem.Quantity<=0)
+                if (cartItem.Quantity <= 0)
                 {
                     _db.CartItems.Remove(cartItem);
                 }
@@ -59,10 +59,12 @@ namespace HomeMarket.Logic
             _db.SaveChanges();
         }
 
-        public void BuyAll()
+        public List<Models.Order> BuyAll()
         {
             UserCartId = GetUserCartId();
             Models.CartItem cartItem = new Models.CartItem();
+            List<Models.Order> receipt = new List<Models.Order> { };
+            var user = _db.Users.First(u => u.UserName == UserCartId);
 
             try
             {
@@ -70,30 +72,47 @@ namespace HomeMarket.Logic
             }
             catch
             {
+                cartItem = null;
             }
 
-            var user = _db.Users.First(u => u.UserName == UserCartId);
 
-            while(cartItem!=null && cartItem.Quantity>0)
+            while (cartItem != null && cartItem.Quantity > 0)
             {
                 var good = _db.goods.FirstOrDefault(g => g.ID == cartItem.Good.ID);
-                user.WalletBalance -= (decimal)cartItem.Good.Price;
-                good.Available--;
-                cartItem.Quantity--;
-                if (cartItem.Quantity <= 0)
+                Models.Order order = new Models.Order
                 {
-                    _db.CartItems.Remove(cartItem);
+                    Date = DateTime.Now,
+                    UserID = user.UserID,
+                    ID = Guid.NewGuid(),
+                    GoodID = good.ID,
+                    Amount = cartItem.Quantity,
+                    Price = cartItem.Quantity * (decimal)cartItem.Good.Price
+                };
+
+                user.WalletBalance -= cartItem.Quantity * (decimal)cartItem.Good.Price;
+
+                // no money == no honey
+                if (user.WalletBalance<0)
+                {
+                    return receipt;
                 }
+
+                good.Available -= cartItem.Quantity;
+                cartItem.Quantity = 0;
+                _db.CartItems.Remove(cartItem);
+                _db.Orders.Add(order);
                 _db.SaveChanges();
+                receipt.Add(order);
                 try
                 {
                     cartItem = _db.CartItems.First(c => c.UserId == UserCartId && c.Quantity > 0);
                 }
-                catch (Exception ex)
+                catch
                 {
                     cartItem = null;
                 }
             }
+            return receipt;
         }
 
 
