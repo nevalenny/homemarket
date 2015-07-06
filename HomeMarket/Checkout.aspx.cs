@@ -47,8 +47,9 @@ namespace HomeMarket
 
                     rp_order.DataBind();
 
-                    rp_receipt.DataSource = userCart.BuyAll();
-                    if(rp_order.Items.Count>rp_receipt.Items.Count)
+                    var receipt = userCart.BuyAll();
+                    rp_receipt.DataSource = receipt;
+                    if(rp_order.Items.Count>receipt.Count)
                     {
                         isNotEnoughMoney = true;
                     }
