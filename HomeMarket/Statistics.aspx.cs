@@ -24,9 +24,9 @@ namespace HomeMarket
                     iTotalCount = 0;
                     var l_orders = _db.Orders.Select(o => o)
                         .Join(_db.goods, o => o.GoodID, g => g.ID, (o, g) => 
-                            new { Date = o.Date, UserID = o.UserID, ItemName = g.Name, Amount = o.Amount, Price = o.Price })
+                            new { Date = o.Date, ID=o.OrderID ,UserID = o.UserID, ItemName = g.Name, Amount = o.Amount, Price = o.Price })
                     .Join(_db.Users, o => o.UserID, u => u.UserID, (o, u) =>
-                        new { Date = o.Date, UserName = u.UserName, ItemName = o.ItemName, Amount = o.Amount, Price = o.Price }).OrderBy(o=>o.Date).ToList();
+                        new { Date = o.Date, ID=o.ID, UserName = u.UserName, ItemName = o.ItemName, Amount = o.Amount, Price = o.Price }).OrderBy(o=>o.Date).ToList();
                     rp_orders.DataSource = l_orders;
                     rp_orders.DataBind();
                 }

@@ -127,6 +127,7 @@ namespace HomeMarket.Logic
 
         public string GetUserCartId()
         {
+            // TODO change User.UserName to User.ID
             if (HttpContext.Current.Session[CartSessionKey] == null)
             {
                 if (!string.IsNullOrWhiteSpace(HttpContext.Current.User.Identity.Name))

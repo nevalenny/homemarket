@@ -27,19 +27,4 @@ namespace HomeMarket.Models
 
         public virtual User User { get; set; }
     }
-
-    public partial class OrderOut
-    {
-
-        public DateTime? Date { get; set; }
-
-        public string UserName { get; set; }
-
-        public string ItemName { get; set; }
-
-        public int Amount { get; set; }
-
-        public decimal Price { get; set; }
-
-    }
 }

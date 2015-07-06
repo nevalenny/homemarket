@@ -11,6 +11,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th>#ID</th>
                                 <th>Date</th>
                                 <th>User</th>
                                 <th>Item name</th>
@@ -22,6 +23,7 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr>
+                <th><%# Eval("ID") %></th>
                 <th><%# Eval("Date") %></th>
                 <th><%# Eval("UserName") %></th>
                 <th><%# Eval("ItemName") %></th>
@@ -33,6 +35,7 @@
             </tbody>
                                             <tfoot>
                                                 <tr class="success">
+                                                    <th></th>
                                                     <th></th>
                                                     <th></th>
                                                     <th>Total</th>
