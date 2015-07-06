@@ -29,31 +29,33 @@ namespace HomeMarket
                     isNotEnoughMoney = false;
                     CartActions userCart = new CartActions();
                     List<Models.CartItem> ds_items = userCart.GetCartItems();
-                    foreach (Models.CartItem item in ds_items)
+                    bool isCartNotEmpty = (ds_items.Count>0);
+                    if (isCartNotEmpty)
                     {
-                        while(item.Quantity > item.Good.Available)
+                        // remove overstock items
+                        foreach (Models.CartItem item in ds_items)
                         {
-                            userCart.RemoveFromCart(item.GoodId);
-                            item.Quantity--;
-                            isItemsRemoved = true;
+                            while (item.Quantity > item.Good.Available)
+                            {
+                                userCart.RemoveFromCart(item.GoodId);
+                                item.Quantity--;
+                                isItemsRemoved = true;
+                            }
                         }
+
+                        rp_order.DataSource = ds_items;
+                        dTotalSum = userCart.TotalSum();
+                        iTotalCount = userCart.TotalCount();
+                        rp_order.DataBind();
+
+                        var receipt = userCart.BuyAll();
+                        rp_receipt.DataSource = receipt;
+                        if (rp_order.Items.Count > receipt.Count)
+                        {
+                            isNotEnoughMoney = true;
+                        }
+                        rp_receipt.DataBind();
                     }
-                    rp_order.DataSource = ds_items;
-                    dTotalSum = userCart.TotalSum();
-                    iTotalCount = userCart.TotalCount();
-
-                    // TODO payment logic here
-                    repository.User.WalletBalance -= dTotalSum;
-
-                    rp_order.DataBind();
-
-                    var receipt = userCart.BuyAll();
-                    rp_receipt.DataSource = receipt;
-                    if(rp_order.Items.Count>receipt.Count)
-                    {
-                        isNotEnoughMoney = true;
-                    }
-                    rp_receipt.DataBind();
                 }
             }
         }

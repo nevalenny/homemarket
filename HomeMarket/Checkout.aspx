@@ -52,18 +52,18 @@
         <HeaderTemplate>
             <hr />
             <%# !isNotEnoughMoney?
-                "<div class='btn btn-success'>Your order was successful! Thanks for shopping at <strong>HomeMarket</strong></div>":
-                "<div class='btn btn-danger'>Your order was not successful! Looks like you have not enough money!</div>" %>
+                "<div class='btn btn-success'>Your order was successful!</div><p>Thanks for shopping at <strong>HomeMarket</strong></p>":
+                "<div class='btn btn-danger'>Your order was not successful!</div><p>Please check your wallet balance!</p>" %>
         </HeaderTemplate>
         <ItemTemplate>
                <h5>Order #<%# rp_receipt.Items.Count + 1 %> - tracking number: <%# Eval("OrderID") %></h5>
 
         </ItemTemplate>
         <FooterTemplate>
-            <h4>Save those order numbers to track your order, or <asp:Button runat="server" Text="Print" CssClass="btn btn-primary" OnClientClick="print()"/></h4>
-            <h4><a href="Categories">Continue shopping</a></h4>
+            <h5>Save those order numbers to track your order, or <asp:Button runat="server" Text="Print" CssClass="btn btn-primary" OnClientClick="print()"/></h5>
         </FooterTemplate>
     </asp:Repeater>
+            <h4><a href="Categories">Continue shopping</a></h4>
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="FootContent" runat="server">
