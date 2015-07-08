@@ -6,11 +6,15 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Membership.OpenAuth;
+using HomeMarket.Models;
+
 
 namespace HomeMarket.Account
 {
     public partial class Register : Page
     {
+        private Models.MarketContext _db = new Models.MarketContext();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             RegisterUser.ContinueDestinationPageUrl = Request.QueryString["ReturnUrl"];
@@ -18,6 +22,17 @@ namespace HomeMarket.Account
 
         protected void RegisterUser_CreatedUser(object sender, EventArgs e)
         {
+            try
+            {
+                var user = _db.Users.First(u => u.UserName == RegisterUser.UserName);
+                var tb = (TextBox)RegisterUser.CreateUserStep.ContentTemplateContainer.FindControl("tb_name");
+                if (tb != null) { user.Name = tb.Text; }
+                _db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+            }
             FormsAuthentication.SetAuthCookie(RegisterUser.UserName, createPersistentCookie: false);
 
             string continueUrl = RegisterUser.ContinueDestinationPageUrl;
@@ -25,6 +40,7 @@ namespace HomeMarket.Account
             {
                 continueUrl = "~/Categories";
             }
+
             Response.Redirect(continueUrl);
         }
     }

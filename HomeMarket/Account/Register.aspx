@@ -31,11 +31,23 @@
                             </p>
 
                             <div class="form-group">
-                                <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">User name</asp:Label>
+                                <asp:Label runat="server" AssociatedControlID="UserName" CssClass="col-md-2 control-label">Your username (required in order to login)</asp:Label>
                                 <div class="col-md-10">
                                     <asp:TextBox runat="server" ID="UserName" CssClass="form-control" />
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
                                         CssClass="text-danger" ErrorMessage="The user name field is required." />
+                                    <asp:RegularExpressionValidator runat="server"     
+                                    ErrorMessage="Please use up to 40 English letters ." 
+                                    ControlToValidate="UserName" ValidationExpression="^[a-zA-Z'.\s]{1,40}$" CssClass="text-danger" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:Label runat="server" AssociatedControlID="tb_name" CssClass="col-md-2 control-label">Your name</asp:Label>
+                                <div class="col-md-10">
+                                    <asp:TextBox runat="server" ID="tb_name" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tb_name"
+                                        CssClass="text-danger" ErrorMessage="The name field is required." />
                                 </div>
                             </div>
 
